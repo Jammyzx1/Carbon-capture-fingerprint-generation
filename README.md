@@ -1,3 +1,5 @@
+[![Python package](https://github.com/Jammyzx1/Carbon-capture-fingerprint-generation/actions/workflows/ccs_ci.yaml/badge.svg)](https://github.com/Jammyzx1/Carbon-capture-fingerprint-generation/actions/workflows/ccs_ci.yaml)
+
 # Carbon-capture-fingerprint-generation
 The code allows for the generation of a molecular representation for amines used in carbon capture, generation from molecular fragment combinations and analysis of the chemical space.
 Documentation of the functionality can be found https://jammyzx1.github.io/Carbon-capture-fingerprint-generation/
