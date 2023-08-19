@@ -1,5 +1,6 @@
 # Carbon-capture-fingerprint-generation
 The code allows for the generation of a molecular representation for amines used in carbon capture, generation from molecular fragment combinations and analysis of the chemical space.
+Documentation of the functionality can be found https://jammyzx1.github.io/Carbon-capture-fingerprint-generation/
 
 Copyright IBM Corporation 2022.
 SPDX-License-Identifier: MIT
