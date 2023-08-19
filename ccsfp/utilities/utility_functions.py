@@ -1,28 +1,38 @@
 #!/usr/bin/env python
 # Copyright IBM Corporation 2022.
-# SPDX-License-Identifier: MIT 
-
+# SPDX-License-Identifier: MIT
 # https://www.rdkit.org/docs/GettingStartedInPython.html
 # creative commons sa 4.0 tutorial used to learn rdkit methods
 # https://creativecommons.org/licenses/by-sa/4.0/
 # (C) 2007-2021 by Greg Landrum
-
 """
 This module provides utilities which might be useful
 """
-
 # Python packages and utilities
-import pandas as pd
-import numpy as np
+from __future__ import annotations
+
 import logging
-from ccsfp.informatics.inchi import inchi_to_smiles
-from ccsfp.informatics.smiles import smiles_to_inchi
+
+import numpy as np
+import pandas as pd
 from rdkit import Chem
 
-def check_for_duplicates(data:pd.DataFrame = None, datafile: str = None, smiles: list = None, inchi: list = None,
-                         inchi_key: list = None, smiles_column_name: str = "smiles",
-                         inchi_column_name: str = "inchi", inchi_key_column_name: str = "inchikey",
-                         compare_which: str = "all", return_reduced_data: bool = False):
+from ccsfp.informatics.inchi import inchi_to_smiles
+from ccsfp.informatics.smiles import smiles_to_inchi
+
+
+def check_for_duplicates(
+    data: pd.DataFrame = None,
+    datafile: str = None,
+    smiles: list = None,
+    inchi: list = None,
+    inchi_key: list = None,
+    smiles_column_name: str = "smiles",
+    inchi_column_name: str = "inchi",
+    inchi_key_column_name: str = "inchikey",
+    compare_which: str = "all",
+    return_reduced_data: bool = False,
+):
     """
     Function to compare a dataset of molecules over multiple common identifiers to id duplicates
     :param data: pd.DataFrame - pandas data frame with columns of at least smiles, inchi and inchikey
@@ -126,8 +136,6 @@ def check_for_duplicates(data:pd.DataFrame = None, datafile: str = None, smiles:
             raise RuntimeError("One of smiles or InChI must be specified")
 
     else:
-
-
         if inchi is not None:
             inchi = [ent.strip() for ent in inchi]
             if smiles is None:
@@ -157,28 +165,49 @@ def check_for_duplicates(data:pd.DataFrame = None, datafile: str = None, smiles:
             log.error("Neither smiles or inchi given to call.")
             raise RuntimeError("One of smiles or InChI must be specified")
 
-        data = pd.DataFrame(data=np.array([smiles, inchi, inchi_key]).T, columns=["smiles", "inchi", "inchikeys"])
+        data = pd.DataFrame(
+            data=np.array([smiles, inchi, inchi_key]).T,
+            columns=["smiles", "inchi", "inchikeys"],
+        )
 
-    #smiles_column_name "smiles",
-    #inchi_column_name"inchi",
-    #inchi_key_column_name"inchikey"
+    # smiles_column_name "smiles",
+    # inchi_column_name"inchi",
+    # inchi_key_column_name"inchikey"
 
-    all_col_dup = data[data[[smiles_column_name, inchi_column_name, inchi_key_column_name]].duplicated(
-        keep="first")].index.to_list()
-    smiles_col_dup = data[data[[smiles_column_name, inchi_column_name, inchi_key_column_name]].duplicated(
-        subset=[smiles_column_name], keep="first")].index.to_list()
-    inchi_col_dup = data[data[[smiles_column_name, inchi_column_name, inchi_key_column_name]].duplicated(
-        subset=[inchi_column_name], keep="first")].index.to_list()
-    inchikeys_col_dup = data[data[[smiles_column_name, inchi_column_name, inchi_key_column_name]].duplicated(
-        subset=[inchi_key_column_name], keep="first")].index.to_list()
+    all_col_dup = data[
+        data[[smiles_column_name, inchi_column_name, inchi_key_column_name]].duplicated(
+            keep="first",
+        )
+    ].index.to_list()
+    smiles_col_dup = data[
+        data[[smiles_column_name, inchi_column_name, inchi_key_column_name]].duplicated(
+            subset=[smiles_column_name], keep="first",
+        )
+    ].index.to_list()
+    inchi_col_dup = data[
+        data[[smiles_column_name, inchi_column_name, inchi_key_column_name]].duplicated(
+            subset=[inchi_column_name], keep="first",
+        )
+    ].index.to_list()
+    inchikeys_col_dup = data[
+        data[[smiles_column_name, inchi_column_name, inchi_key_column_name]].duplicated(
+            subset=[inchi_key_column_name], keep="first",
+        )
+    ].index.to_list()
 
-    log.info("id columns = {}, {} and {}".format(smiles_column_name, inchi_column_name, inchi_key_column_name))
-    log.info(f"all id columns number of rows which are duplicates: {len(all_col_dup)}\nIndexes: {all_col_dup}\n"
-             f"smiles column number of rows which are duplicates: {len(smiles_col_dup)}\nIndexes: {smiles_col_dup}\n"
-             f"inchi column number of rows which are duplicates: {len(inchi_col_dup)}\nIndexes: {inchi_col_dup}\n"
-             f"inchi keys column number of rows which are duplicates: {len(inchikeys_col_dup)}\nIndexes: "
-             f"{inchikeys_col_dup}\n"
-             f"out of {len(smiles)} entries\n")
+    log.info(
+        "id columns = {}, {} and {}".format(
+            smiles_column_name, inchi_column_name, inchi_key_column_name,
+        ),
+    )
+    log.info(
+        f"all id columns number of rows which are duplicates: {len(all_col_dup)}\nIndexes: {all_col_dup}\n"
+        f"smiles column number of rows which are duplicates: {len(smiles_col_dup)}\nIndexes: {smiles_col_dup}\n"
+        f"inchi column number of rows which are duplicates: {len(inchi_col_dup)}\nIndexes: {inchi_col_dup}\n"
+        f"inchi keys column number of rows which are duplicates: {len(inchikeys_col_dup)}\nIndexes: "
+        f"{inchikeys_col_dup}\n"
+        f"out of {len(smiles)} entries\n",
+    )
 
     if compare_which is None:
         return all_col_dup, smiles_col_dup, inchi_col_dup, inchikeys_col_dup
@@ -186,8 +215,11 @@ def check_for_duplicates(data:pd.DataFrame = None, datafile: str = None, smiles:
         if return_reduced_data is False:
             return all_col_dup
         else:
-            return data.drop_duplicates(subset=[smiles_column_name, inchi_column_name, inchi_key_column_name],
-                                        keep="first")
+            return data.drop_duplicates(
+                subset=[smiles_column_name,
+                        inchi_column_name, inchi_key_column_name],
+                keep="first",
+            )
     elif compare_which == "smiles" or compare_which == "smile":
         if return_reduced_data is False:
             return smiles_col_dup
@@ -204,6 +236,8 @@ def check_for_duplicates(data:pd.DataFrame = None, datafile: str = None, smiles:
         else:
             return data.drop_duplicates(subset=[inchi_key_column_name], keep="first")
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

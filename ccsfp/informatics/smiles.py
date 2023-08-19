@@ -1,18 +1,19 @@
 #!/usr/bin/env python
 # Copyright IBM Corporation 2022.
 # SPDX-License-Identifier: MIT
-
 # https://www.rdkit.org/docs/GettingStartedInPython.html
 # creative commons sa 4.0 tutorial used to learn rdkit methods
 # https://creativecommons.org/licenses/by-sa/4.0/
 # (C) 2007-2021 by Greg Landrum
-
-from rdkit import Chem
+from __future__ import annotations
 
 import logging
 
-def smiles_to_inchi(smiles : str) -> str :
-    """ 
+from rdkit import Chem
+
+
+def smiles_to_inchi(smiles: str) -> str:
+    """
      Function to conveniently convert smiles to InChI
     :param smiles:
     :return: str InChI

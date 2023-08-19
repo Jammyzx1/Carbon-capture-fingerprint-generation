@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 # Copyright IBM Corporation 2022.
 # SPDX-License-Identifier: MIT
-
 # https://www.rdkit.org/docs/GettingStartedInPython.html
 # creative commons sa 4.0 tutorial used to learn rdkit methods
 # https://creativecommons.org/licenses/by-sa/4.0/
 # (C) 2007-2021 by Greg Landrum
-
 """
 This module is intended to allow one to easily build a force directed graph of chemical space using the networkx python modules.
 
@@ -14,50 +12,52 @@ The codes require a pandas dataframe containing columns of names, smiles and a p
 provided as input. The nodes are shaded based on the proptery and connected based on Tanimoto similarity from the smiles strings. A node 2D
 coordinate set can be passed and the nearest molecules nodes will be annoted with moleucles images and names.
 """
-
-
 # Python packages and utilities
-import time
-import pandas as pd
-import numpy as np
+from __future__ import annotations
+
 import json
-import os
-
-#RDKit
-import rdkit
-from rdkit import Chem
-from rdkit.Chem import Draw
-from rdkit.Chem import AllChem
-from rdkit.Chem import rdMolDescriptors
-from rdkit.Chem import DataStructs
-
-# Logging
 import logging
+import os
+import time
 
-# networkx
-import networkx as nx
-
-# matplotlib
 import matplotlib.pyplot as plt
-from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import networkx as nx
+import numpy as np
+import pandas as pd
+import rdkit
+from matplotlib.offsetbox import AnnotationBbox
+from matplotlib.offsetbox import OffsetImage
+from rdkit import Chem
+from rdkit.Chem import AllChem
+from rdkit.Chem import DataStructs
+from rdkit.Chem import Draw
+from rdkit.Chem import rdMolDescriptors
 
-# own modules
-from ccsfp.informatics import molecules_and_images as mai
 from ccsfp.informatics import finger_prints as fp
+from ccsfp.informatics import molecules_and_images as mai
+
+# RDKit
+# Logging
+# networkx
+# matplotlib
+# own modules
 
 random_seed = 15791
 
-def build_nx_graph(df : pd.DataFrame,
-                   prop_key : str = "property",
-                   smiles_key : str = "smiles",
-                   label_key : str = "names",
-                   distance : bool = False,
-                   fingerprints : list = None,
-                   connection_threshold : float = 0.7,
-                   connect_all : bool = False,
-                   graph_file_name : str = None,
-                   similarity_distance_list : list = None,
-                   node_attributes : list = None) -> nx.Graph :
+
+def build_nx_graph(
+    df: pd.DataFrame,
+    prop_key: str = "property",
+    smiles_key: str = "smiles",
+    label_key: str = "names",
+    distance: bool = False,
+    fingerprints: list = None,
+    connection_threshold: float = 0.7,
+    connect_all: bool = False,
+    graph_file_name: str = None,
+    similarity_distance_list: list = None,
+    node_attributes: list = None,
+) -> nx.Graph:
     """
     Function to build a defualt graph for chemical space map plots
     :param df: pandas dataframe - dataframe with at least a label column, smiles column and property column
@@ -84,11 +84,19 @@ def build_nx_graph(df : pd.DataFrame,
 
     log = logging.Logger(__name__)
 
-    log.info("Starting to build the chemical space graph, this can take quite some time .....")
+    log.info(
+        "Starting to build the chemical space graph, this can take quite some time .....",
+    )
     if fingerprints is None:
-        log.info("No fingerprints given by user, will use Morgan circular fingerprints radius 2 bit length 2048.")
-        fps = [AllChem.GetMorganFingerprintAsBitVect(Chem.MolFromSmiles(s), radius=2, nBits=2048) for s in
-           df[smiles_key].values]
+        log.info(
+            "No fingerprints given by user, will use Morgan circular fingerprints radius 2 bit length 2048.",
+        )
+        fps = [
+            AllChem.GetMorganFingerprintAsBitVect(
+                Chem.MolFromSmiles(s), radius=2, nBits=2048,
+            )
+            for s in df[smiles_key].values
+        ]
     else:
         fps = fingerprints
 
@@ -96,7 +104,10 @@ def build_nx_graph(df : pd.DataFrame,
 
     if similarity_distance_list is None:
         log.info("No smilarity/distance list given by user, will use Tanimoto metric")
-        tc = [DataStructs.cDataStructs.BulkTanimotoSimilarity(fps[inx], fps) for inx in range(len(fps))]
+        tc = [
+            DataStructs.cDataStructs.BulkTanimotoSimilarity(fps[inx], fps)
+            for inx in range(len(fps))
+        ]
     else:
         tc = similarity_distance_list
 
@@ -107,34 +118,40 @@ def build_nx_graph(df : pd.DataFrame,
     if distance is True:
         df_weights = 1.0 - df_weights
 
-
     # initialize graph
     g = nx.Graph()
 
     # Start to build the graph with the nodes from the raw data
     if node_attributes is not None:
-
         for index, row in df.iterrows():
             log.debug("Index: {}".format(index))
 
             na = node_attributes[index]
             if not isinstance(dict, na):
-                log.warning("WARNING - node_attribute index {} is not a dictionary {}\n{}".format(index, type(na), na))
-                raise RuntimeError("ERROR - node attribute {} is not a dictionary".format(index))
+                log.warning(
+                    "WARNING - node_attribute index {} is not a dictionary {}\n{}".format(
+                        index, type(na), na,
+                    ),
+                )
+                raise RuntimeError(
+                    "ERROR - node attribute {} is not a dictionary".format(
+                        index),
+                )
 
             m = mai.smiles_to_molecule(row[smiles_key])
 
-            g.add_node(index,
-                       smiles=row[smiles_key],
-                       name=row[label_key],
-                       fingerprint=fps[index],
-                       fingerprint_string=fp.bits_to_text(fps[index]),
-                       inchi=Chem.inchi.MolToInchi(m),
-                       inchikey=Chem.inchi.MolToInchiKey(m),
-                       mr=Chem.rdMolDescriptors.CalcExactMolWt(m),
-                       prop=row[prop_key],
-                       **na
-                      )
+            g.add_node(
+                index,
+                smiles=row[smiles_key],
+                name=row[label_key],
+                fingerprint=fps[index],
+                fingerprint_string=fp.bits_to_text(fps[index]),
+                inchi=Chem.inchi.MolToInchi(m),
+                inchikey=Chem.inchi.MolToInchiKey(m),
+                mr=Chem.rdMolDescriptors.CalcExactMolWt(m),
+                prop=row[prop_key],
+                **na,
+            )
 
     else:
         for index, row in df.iterrows():
@@ -142,16 +159,17 @@ def build_nx_graph(df : pd.DataFrame,
 
             m = mai.smiles_to_molecule(row[smiles_key])
 
-            g.add_node(index,
-                       smiles=row[smiles_key],
-                       name=row[label_key],
-                       fingerprint=fps[index],
-                       fingerprint_string=fp.bits_to_text(fps[index]),
-                       inchi=Chem.inchi.MolToInchi(m),
-                       inchikey=Chem.inchi.MolToInchiKey(m),
-                       mr=Chem.rdMolDescriptors.CalcExactMolWt(m),
-                       prop=row[prop_key]
-                       )
+            g.add_node(
+                index,
+                smiles=row[smiles_key],
+                name=row[label_key],
+                fingerprint=fps[index],
+                fingerprint_string=fp.bits_to_text(fps[index]),
+                inchi=Chem.inchi.MolToInchi(m),
+                inchikey=Chem.inchi.MolToInchiKey(m),
+                mr=Chem.rdMolDescriptors.CalcExactMolWt(m),
+                prop=row[prop_key],
+            )
 
     log.info("Number of nodes {}".format(len(list(g.nodes))))
 
@@ -165,10 +183,14 @@ def build_nx_graph(df : pd.DataFrame,
         for j in df_weights.index[i + 1:]:
             log.debug("Considering connection between node {} {}".format(i, j))
             if df_weights.loc[i, j] >= connection_threshold:
-                edges.append((i, j, {"weight": df_weights.loc[i, j], "color": "blue"}))
+                edges.append(
+                    (i, j, {"weight": df_weights.loc[i, j], "color": "blue"}))
             else:
                 if connect_all is True:
-                    edges.append((i, j, {"weight": df_weights.loc[i, j], "color": "grey"}))
+                    edges.append(
+                        (i, j, {
+                         "weight": df_weights.loc[i, j], "color": "grey"}),
+                    )
 
     g.add_edges_from(edges)
 
@@ -178,25 +200,27 @@ def build_nx_graph(df : pd.DataFrame,
         else:
             current_time = time.strftime("%-Y%m-%d-%H-%M-%S")
             graph_file_name = "{}_{}.pkl".format(graph_file_name, current_time)
-            log.info("File already existed will save to {}".format(graph_file_name))
+            log.info("File already existed will save to {}".format(
+                graph_file_name))
             nx.readwrite.gpickle.write_gpickle(g, graph_file_name)
 
     return g
 
 
-def plot_graph(g : nx.Graph,
-               opt_dist : float = None,
-               weight : str = None,
-               iterations : int = 50,
-               random_seed : int = 7,
-               figure_size : tuple = (20, 20),
-               node_colours : str ="b",
-               node_size : int = 20,
-               cmap : plt.cm = plt.cm.rainbow,
-               file_name_no_extension : str = "graph",
-               return_positions_only : bool = False,
-               return_image_only : bool = False
-               ):
+def plot_graph(
+    g: nx.Graph,
+    opt_dist: float = None,
+    weight: str = None,
+    iterations: int = 50,
+    random_seed: int = 7,
+    figure_size: tuple = (20, 20),
+    node_colours: str = "b",
+    node_size: int = 20,
+    cmap: plt.cm = plt.cm.rainbow,
+    file_name_no_extension: str = "graph",
+    return_positions_only: bool = False,
+    return_image_only: bool = False,
+):
     """
     A function to set node positions using the spring layout. This is a deterministic layout (if you set the seed) using
     a form of annealing. It uses the Fruchterman-Reingold force-directed algorithm. In simple terms the algorithm treats
@@ -226,12 +250,9 @@ def plot_graph(g : nx.Graph,
     log = logging.getLogger(__name__)
 
     log.info("Setting nodes .....")
-    position = nx.spring_layout(g,
-                           k=opt_dist,
-                           weight=weight,
-                           iterations=iterations,
-                           seed=random_seed
-                           )
+    position = nx.spring_layout(
+        g, k=opt_dist, weight=weight, iterations=iterations, seed=random_seed,
+    )
 
     pos_out = {k: ent.tolist() for k, ent in position.items()}
 
@@ -242,7 +263,8 @@ def plot_graph(g : nx.Graph,
     else:
         current_time = time.strftime("%-Y%m-%d-%H-%M-%S")
         positions_filename = "{}_{}".format(positions_filename, current_time)
-        log.info("File already existed will save to {}.json".format(positions_filename))
+        log.info("File already existed will save to {}.json".format(
+            positions_filename))
         with open("{}.json".format(positions_filename), "w") as jout:
             json.dump(pos_out, jout, indent=4)
 
@@ -256,15 +278,17 @@ def plot_graph(g : nx.Graph,
     ax = plt.gca()
 
     log.info("Plotting .....")
-    nx.draw(g,
-            position,
-            with_labels=False,
-            node_color=node_colours,
-            node_size=node_size,
-            cmap=cmap,
-            vmin=0.0,
-            vmax=1.0,
-            ax=ax)
+    nx.draw(
+        g,
+        position,
+        with_labels=False,
+        node_color=node_colours,
+        node_size=node_size,
+        cmap=cmap,
+        vmin=0.0,
+        vmax=1.0,
+        ax=ax,
+    )
 
     plot_filename = "{}_plot".format(file_name_no_extension)
     if not os.path.isfile("{}.png".format(plot_filename)):
@@ -281,10 +305,9 @@ def plot_graph(g : nx.Graph,
         return position, fig
 
 
-def close_n_nodes(pos : dict,
-                  centre : list = (0.0, 0.0),
-                  close : float = None,
-                  topn : int = 10) -> list:
+def close_n_nodes(
+    pos: dict, centre: list = (0.0, 0.0), close: float = None, topn: int = 10,
+) -> list:
     """
     From a dictionary of graph node positions (pos in the notebook) return a ranked list of n
     :param centre: np.ndarray - central point around which to find the nearest n points with in the threshold
@@ -292,7 +315,7 @@ def close_n_nodes(pos : dict,
     :param topn: int - the number of points to find if None return all within close
     :return:
     """
-    log =logging.getLogger(__name__)
+    log = logging.getLogger(__name__)
 
     close_nodes = []
 
@@ -324,17 +347,30 @@ def close_n_nodes(pos : dict,
     return close_node_keys
 
 
-def plot_image_annotated_chemical_space(g : nx.Graph,
-                                      position : dict,
-                                      ax : plt.axes,
-                                      close_node_keys : list,
-                                      property_key : str = "prop",
-                                      x_axes_fraction_fixed : list = [-0.25, -0.05],
-                                      yaxes_fraction_increments : list = [1.0, 0.8, 0.6, 0.4, 0.2, 0.0, -0.2,
-                                                                          -0.4, -0.6, -0.8, -1.0],
-                                      size : tuple = (150, 150),
-                                      arrow : dict = dict(arrowstyle="simple",facecolor="grey",edgecolor="grey")
-                                     ):
+def plot_image_annotated_chemical_space(
+    g: nx.Graph,
+    position: dict,
+    ax: plt.axes,
+    close_node_keys: list,
+    property_key: str = "prop",
+    x_axes_fraction_fixed: list = [-0.25, -0.05],
+    yaxes_fraction_increments: list = [
+        1.0,
+        0.8,
+        0.6,
+        0.4,
+        0.2,
+        0.0,
+        -0.2,
+        -0.4,
+        -0.6,
+        -0.8,
+        -1.0,
+    ],
+    size: tuple = (150, 150),
+    arrow: dict = dict(arrowstyle="simple",
+                       facecolor="grey", edgecolor="grey"),
+):
     """
     Function to add molecule images to the chemical space images
     :param g: networkx graph - networkx graph
@@ -353,40 +389,51 @@ def plot_image_annotated_chemical_space(g : nx.Graph,
     if isinstance(yaxes_fraction_increments, tuple):
         yaxes_fraction_increments = list(yaxes_fraction_increments)
 
-    gridimages = [(x, y) for x in x_axes_fraction_fixed for y in yaxes_fraction_increments]
+    gridimages = [
+        (x, y) for x in x_axes_fraction_fixed for y in yaxes_fraction_increments
+    ]
 
     if len(gridimages) < len(close_node_keys):
-        log.warning("Too few grid places for molecules close to node, this will cause an index error. Increase the number of grid places")
+        log.warning(
+            "Too few grid places for molecules close to node, this will cause an index error. Increase the number of grid places",
+        )
 
     for ith, cnk in enumerate(close_node_keys):
-
         # Get a molecule image from RDKit grid image so we can add a legend
         log.info("Ith {}: close node k {}".format(ith, cnk))
-        message = "{}\n{}".format(g.nodes()[cnk]["smiles"], g.nodes()[cnk][property_key])
+        message = "{}\n{}".format(
+            g.nodes()[cnk]["smiles"], g.nodes()[cnk][property_key],
+        )
         log.info("plotting and adding legend {}".format(message))
-        grid = Chem.Draw.MolsToGridImage([mai.smiles_to_molecule(g.nodes()[cnk]["smiles"], threed=False, addH=False)],
-                                         molsPerRow=1,
-                                         subImgSize=size,
-                                         legends=[message],
-                                         useSVG=False,
-                                         returnPNG=False
-                                         # maxMols=1
-                                        )
+        grid = Chem.Draw.MolsToGridImage(
+            [
+                mai.smiles_to_molecule(
+                    g.nodes()[cnk]["smiles"], threed=False, addH=False,
+                ),
+            ],
+            molsPerRow=1,
+            subImgSize=size,
+            legends=[message],
+            useSVG=False,
+            returnPNG=False,
+            # maxMols=1
+        )
 
         # Get an offset box in matplotlib add the image and legend as an annotation to the chemical space graph
         im_box = OffsetImage(grid)
         im_box.image.axes = ax
         log.info("Node of smiles position {}".format(position[cnk]))
 
-        ab = AnnotationBbox(im_box,
-                            position[cnk],
-                            xybox=gridimages[ith],
-                            xycoords="data",
-                            boxcoords="axes fraction",
-                            pad=0.55,
-                            frameon=False,
-                            arrowprops=arrow
-                            )
+        ab = AnnotationBbox(
+            im_box,
+            position[cnk],
+            xybox=gridimages[ith],
+            xycoords="data",
+            boxcoords="axes fraction",
+            pad=0.55,
+            frameon=False,
+            arrowprops=arrow,
+        )
 
         # Add the artist to the image
         ax.add_artist(ab)
@@ -394,14 +441,15 @@ def plot_image_annotated_chemical_space(g : nx.Graph,
     return ax
 
 
-def plot_annotated_chemical_space(df : pd.DataFrame,
-                                  prop_key : str = "property",
-                                  smiles_key : str = "smiles",
-                                  label_key : str = "names",
-                                  closest_n : int = 4,
-                                  centroid : list = (0.0, 0.0),
-                                  connection_threshold : float = 0.7
-                                  ) -> (nx.Graph, dict, plt.axes) :
+def plot_annotated_chemical_space(
+    df: pd.DataFrame,
+    prop_key: str = "property",
+    smiles_key: str = "smiles",
+    label_key: str = "names",
+    closest_n: int = 4,
+    centroid: list = (0.0, 0.0),
+    connection_threshold: float = 0.7,
+) -> (nx.Graph, dict, plt.axes):
     """
     Wrapper function to allow graoh building, plotting and annotation in a single call.
     :param df: pandas dataframe - dataframe with at least a label column, smiles column and property column
@@ -420,8 +468,13 @@ def plot_annotated_chemical_space(df : pd.DataFrame,
     log.info("Starting chemical space plotting")
     log.info(f"{prop_key} {smiles_key} {label_key}")
     log.info(f"{df}")
-    g = build_nx_graph(df, prop_key=prop_key, smiles_key=smiles_key, label_key=label_key,
-                       connection_threshold=connection_threshold)
+    g = build_nx_graph(
+        df,
+        prop_key=prop_key,
+        smiles_key=smiles_key,
+        label_key=label_key,
+        connection_threshold=connection_threshold,
+    )
     pos, fig = plot_graph(g, weight="weight")
     close_by_nodes = close_n_nodes(pos, centre=centroid, topn=closest_n)
     ax = fig.gca()
@@ -429,6 +482,8 @@ def plot_annotated_chemical_space(df : pd.DataFrame,
 
     return g, pos, ax
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

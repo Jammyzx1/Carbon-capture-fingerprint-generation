@@ -1,32 +1,32 @@
 #!/usr/bin/env python
 # Copyright IBM Corporation 2022.
 # SPDX-License-Identifier: MIT
-
 # https://www.rdkit.org/docs/GettingStartedInPython.html
 # creative commons sa 4.0 tutorial used to learn rdkit methods
 # https://creativecommons.org/licenses/by-sa/4.0/
 # (C) 2007-2021 by Greg Landrum
-
 # Python packages and utilities
-import pandas as pd
-import numpy as np
+from __future__ import annotations
 
-#RDKit
-import rdkit
-from rdkit import Chem
-
-# disp
-from IPython.display import display
-
-# Logging
 import logging
 
-# own modules
+import numpy as np
+import pandas as pd
+import rdkit
+from IPython.display import display
+from rdkit import Chem
+
 from ccsfp.informatics import molecules_and_images as mai
+
+# RDKit
+# disp
+# Logging
+# own modules
 
 citation = "{ADD BIBTEX ENTRY}"
 
 random_seed = 15791
+
 
 def number_of_x_atoms(mol: rdkit.Chem.rdchem.Mol, x="N"):
     """
@@ -66,12 +66,19 @@ def number_of_n_atoms(mol: rdkit.Chem.rdchem.Mol) -> int:
 
     return nN
 
-def count_amine_types(smi: str, primary: str = "[NX3;H2][CX4;!$(C=[#7,#8])]",
-                      secondary: str = "[NX3;H1][CX4;!$(C=[#7,#8])][CX4;!$(C=[#7,#8])]",
-                      tertiary: str = "[NX3]([CX4;!$(C=[#7,#8])])([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])]",
-                      aromatic_sp2_n: str = "[$([nX3,X2](:[c,n,o,b,s]):[c,n,o,b,s])]",
-                      show: bool = False, show_primary: bool = False, show_secondary: bool = False, show_tertiary: bool = False,
-                      show_aromaticsp2: bool = False) -> (int, int, int, int):
+
+def count_amine_types(
+    smi: str,
+    primary: str = "[NX3;H2][CX4;!$(C=[#7,#8])]",
+    secondary: str = "[NX3;H1][CX4;!$(C=[#7,#8])][CX4;!$(C=[#7,#8])]",
+    tertiary: str = "[NX3]([CX4;!$(C=[#7,#8])])([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])]",
+    aromatic_sp2_n: str = "[$([nX3,X2](:[c,n,o,b,s]):[c,n,o,b,s])]",
+    show: bool = False,
+    show_primary: bool = False,
+    show_secondary: bool = False,
+    show_tertiary: bool = False,
+    show_aromaticsp2: bool = False,
+) -> (int, int, int, int):
     """
     Function to count the sub-structuer matches to the 4 amine types
     :param smi: str - smiles string
@@ -105,7 +112,11 @@ def count_amine_types(smi: str, primary: str = "[NX3;H2][CX4;!$(C=[#7,#8])]",
             log.info("{}".format(display(mol)))
         else:
             log.info("No matches")
-        log.info("\nNumber of matches: {} Match atom indexes: {}".format(len(matches), matches))
+        log.info(
+            "\nNumber of matches: {} Match atom indexes: {}".format(
+                len(matches), matches,
+            ),
+        )
 
     mol = mai.smiles_to_molecule(smi, threed=False)
     matches = mol.GetSubstructMatches(secondary_substructure)
@@ -116,7 +127,11 @@ def count_amine_types(smi: str, primary: str = "[NX3;H2][CX4;!$(C=[#7,#8])]",
             log.info("{}".format(display(mol)))
         else:
             log.info("No matches")
-        log.info("\nNumber of matches: {} Match atom indexes: {}".format(len(matches), matches))
+        log.info(
+            "\nNumber of matches: {} Match atom indexes: {}".format(
+                len(matches), matches,
+            ),
+        )
 
     mol = mai.smiles_to_molecule(smi, threed=False)
     matches = mol.GetSubstructMatches(tertiary_substructure)
@@ -127,7 +142,11 @@ def count_amine_types(smi: str, primary: str = "[NX3;H2][CX4;!$(C=[#7,#8])]",
             log.info("{}".format(display(mol)))
         else:
             log.info("No matches")
-        log.info("\nNumber of matches: {} Match atom indexes: {}".format(len(matches), matches))
+        log.info(
+            "\nNumber of matches: {} Match atom indexes: {}".format(
+                len(matches), matches,
+            ),
+        )
 
     mol = mai.smiles_to_molecule(smi, threed=False)
     matches = mol.GetSubstructMatches(aromsp2_substructure)
@@ -138,14 +157,26 @@ def count_amine_types(smi: str, primary: str = "[NX3;H2][CX4;!$(C=[#7,#8])]",
             log.info("{}".format(display(mol)))
         else:
             log.info("No matches")
-        log.info("\nNumber of matches: {} Match atom indexes: {}".format(len(matches), matches))
+        log.info(
+            "\nNumber of matches: {} Match atom indexes: {}".format(
+                len(matches), matches,
+            ),
+        )
 
     return n_primary, n_secondary, n_tertiary, n_aromaticsp2
 
 
-def capacity_classes(n_primary: list, n_secodnary: list, n_tertiary: list, n_aromatic_sp2: list,
-                     capacity: list, units: str = "molco2_moln",
-                     number_N_atoms: list = None, amines_mr: list = None, co2_mass: float = 44.009) -> list:
+def capacity_classes(
+    n_primary: list,
+    n_secodnary: list,
+    n_tertiary: list,
+    n_aromatic_sp2: list,
+    capacity: list,
+    units: str = "molco2_moln",
+    number_N_atoms: list = None,
+    amines_mr: list = None,
+    co2_mass: float = 44.009,
+) -> list:
     """
     Function to output a suggested threshold for 'good' or 'bad' classification of amine molecules based on carbon capture capacity
     in the given units
@@ -168,25 +199,30 @@ def capacity_classes(n_primary: list, n_secodnary: list, n_tertiary: list, n_aro
     classes = []
 
     molar_ratios = [ent / co2_mass for ent in amines_mr]
-    df = pd.DataFrame(data=np.array([n_primary, n_secodnary, n_tertiary, n_aromatic_sp2]).T,
-                      columns=["primary_amine_counts", "secondary_amine_counts", "tertiary_amine_counts",
-                               "aromatic_sp2_n"])
+    df = pd.DataFrame(
+        data=np.array([n_primary, n_secodnary, n_tertiary, n_aromatic_sp2]).T,
+        columns=[
+            "primary_amine_counts",
+            "secondary_amine_counts",
+            "tertiary_amine_counts",
+            "aromatic_sp2_n",
+        ],
+    )
 
     for indx, row in df.iterrows():
         ret = classify(*row.values)
 
         # N molar capacity
         if units == "molco2_moln":
-
             if capacity[indx] < ret:
                 classes.append(0)
             else:
                 classes.append(1)
-            log.info("{} N molar capacity (mol co2 / mol N) threshold {:.2f} capacity {:.2f} class {}".format(indx, ret,
-                                                                                                              capacity[
-                                                                                                                  indx],
-                                                                                                              classes[
-                                                                                                                  -1]))
+            log.info(
+                "{} N molar capacity (mol co2 / mol N) threshold {:.2f} capacity {:.2f} class {}".format(
+                    indx, ret, capacity[indx], classes[-1],
+                ),
+            )
 
         elif units == "molco2_molamine":
             # amine molar capacity
@@ -195,14 +231,11 @@ def capacity_classes(n_primary: list, n_secodnary: list, n_tertiary: list, n_aro
             else:
                 classes.append(1)
             log.info(
-                "{} Amine molar capacity (mol co2 / mol amine) threshold {:.2f} capacity {:.2f} class {}".format(indx,
-                                                                                                                 ret *
-                                                                                                                 number_N_atoms[
-                                                                                                                     indx],
-                                                                                                                 capacity[
-                                                                                                                     indx],
-                                                                                                                 classes[
-                                                                                                                     -1]))
+                "{} Amine molar capacity (mol co2 / mol amine) threshold {:.2f} capacity {:.2f} class {}".format(
+                    indx, ret *
+                    number_N_atoms[indx], capacity[indx], classes[-1],
+                ),
+            )
 
         elif units == "gco2_gamine":
             # mass capacity
@@ -210,13 +243,26 @@ def capacity_classes(n_primary: list, n_secodnary: list, n_tertiary: list, n_aro
                 classes.append(0)
             else:
                 classes.append(1)
-            log.info("{} Mass capacity (co2 (g) / amine (g)) threshold {:.2f} capacity {:.2f} class {}\n----\n".format(
-                indx, (ret * number_N_atoms[indx]) / molar_ratios[indx], capacity[indx], classes[-1]))
+            log.info(
+                "{} Mass capacity (co2 (g) / amine (g)) threshold {:.2f} capacity {:.2f} class {}\n----\n".format(
+                    indx,
+                    (ret * number_N_atoms[indx]) / molar_ratios[indx],
+                    capacity[indx],
+                    classes[-1],
+                ),
+            )
 
     return classes
 
 
-def classify(n_primary: int, n_secodnary: int, n_tertiary: int, n_aromatic_sp2: int, primary_secondary_weight: float=0.5, tertiary_weight: float=1.0):
+def classify(
+    n_primary: int,
+    n_secodnary: int,
+    n_tertiary: int,
+    n_aromatic_sp2: int,
+    primary_secondary_weight: float = 0.5,
+    tertiary_weight: float = 1.0,
+):
     """
     Function to output a suggested threshold for 'good' or 'bad' classification of amine molecules based on carbon capture capacity
     :param n_primary: int - number of primary amine groups in the molecule
@@ -229,9 +275,11 @@ def classify(n_primary: int, n_secodnary: int, n_tertiary: int, n_aromatic_sp2: 
     """
 
     if n_primary + n_secodnary > 0 and n_tertiary > 0:
-        # d provides a tempering to the other wise ever increasing expectation of a polyamine of all amine types in which the tertiary is likely 
+        # d provides a tempering to the other wise ever increasing expectation of a polyamine of all amine types in which the tertiary is likely
         # to play a small role comapred to kinetically favourable primary and secondary amine reactions.
-        n = (primary_secondary_weight * (n_primary + n_secodnary)) + (tertiary_weight * n_tertiary)
+        n = (primary_secondary_weight * (n_primary + n_secodnary)) + (
+            tertiary_weight * n_tertiary
+        )
         d = 2.0 * n_tertiary
         return n / d
 
@@ -254,13 +302,17 @@ def classify(n_primary: int, n_secodnary: int, n_tertiary: int, n_aromatic_sp2: 
         # reacts as a catalytic molecule rather than a reactant
         return tertiary_weight
 
-    elif n_primary == 0 and n_secodnary == 0 and n_tertiary == 0 and n_aromatic_sp2 != 0:
+    elif (
+        n_primary == 0 and n_secodnary == 0 and n_tertiary == 0 and n_aromatic_sp2 != 0
+    ):
         # estimate as it is not clear on exactly what route these may take
         return primary_secondary_weight
 
     else:
         return primary_secondary_weight
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

@@ -1,0 +1,2481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>ccsfp.informatics.finger_prints API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ccsfp.informatics.finger_prints</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+# Copyright IBM Corporation 2022.
+# SPDX-License-Identifier: MIT
+# https://www.rdkit.org/docs/GettingStartedInPython.html
+# creative commons sa 4.0 tutorial used to learn rdkit methods
+# https://creativecommons.org/licenses/by-sa/4.0/
+# (C) 2007-2021 by Greg Landrum
+# Python packages and utilities
+from __future__ import annotations
+
+import logging
+
+import dask
+import numpy as np
+import pandas as pd
+import rdkit
+from rdkit import Chem
+from rdkit import SimDivFilters
+from rdkit.Chem import DataStructs
+from rdkit.Chem import MACCSkeys
+
+from . import molecules_and_images as mai
+
+# RDKit
+# Logging
+# Dask
+# own modules
+
+citation = &#34;&#34;&#34;@article{mcdonagh2022chemical,
+  title={Chemical space analysis and property prediction for carbon capture amine molecules},
+  author={McDonagh, James and Zavitsanou, Stamatia and Harrison, Alexander and Zubarev, Dimitry and Wunsch, Benjamin and van Kessel, Theordore and Cipcigan, Flaviu},
+  year={2022},
+  url={https://chemrxiv.org/engage/chemrxiv/article-details/62e110cbadb01e653cae19f4}
+}&#34;&#34;&#34;
+
+random_seed = 15791
+
+
+class ccus_fps(object):
+    def __init__(
+        self,
+        fingerprint_version: int = 1,
+        names: list = None,
+        substructures: list = None,
+        log: logging.Logger = None,
+        verbose: bool = True,
+    ):
+        &#34;&#34;&#34;
+        Initialise the class
+        :param fingerprint_version: int - version number
+        :param names: iterable - list of names of the substructure to use for the fingerprint
+        :param substructures: iterable - list of substructure strings in smarts notation
+        :param log: logging.Logger - logger object
+        :param verbose: bool - print extra information is verbose
+        &#34;&#34;&#34;
+        self.version_explanations = {
+            1: &#34;This is a filtered set which seems to perform well for modelling this finger print includes rarer groups like&#34;
+            &#34;sulphur.&#34;,
+            2: &#34;This is a filtered set which seems to perform well for modelling but does not include rarer groups like&#34;
+            &#34;sulphur containing hetrocycles.&#34;,
+        }
+
+        self.version_names = {
+            1: [
+                &#34;ammonia&#34;,
+                &#34;primary_amine&#34;,
+                &#34;secondary_amine&#34;,
+                &#34;tertiary_amine&#34;,
+                &#34;quaternary_N&#34;,
+                &#34;imine&#34;,
+                &#34;nitrogen_bonded_to_carbon&#34;,
+                &#34;aromatic_N_sp2&#34;,
+                &#34;carboxylic_acid&#34;,
+                &#34;primary_alcohol&#34;,
+                &#34;secondary_alcohol&#34;,
+                &#34;tertiary_alcohol&#34;,
+                &#34;t_butyl&#34;,
+                &#34;carbonyl&#34;,
+                &#34;halocarbon&#34;,
+                &#34;benezene_ring&#34;,
+                &#34;6_member_aromatic_c_and_n_ring&#34;,
+                &#34;6_member_c_and_o_ring&#34;,
+                &#34;5_c_ring&#34;,
+                &#34;5_member_aromatic_c_and_n_ring&#34;,
+                &#34;5_member_c_and_o_ring&#34;,
+                &#34;Cyclohexane&#34;,
+                &#34;Cyclohexylamine&#34;,
+                &#34;Aniline&#34;,
+                &#34;benzylamine&#34;,
+                &#34;piperidine&#34;,
+                &#34;pyridine&#34;,
+                &#34;pyrrole&#34;,
+                &#34;primary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;secondary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;tertiary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;primary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;secondary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;tertiary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_primary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_secondary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_tertiary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_primary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_secondary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_tertiary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;primary_amine_one_carbon_aromatic_group&#34;,
+                &#34;primary_amine_two_carbon_aromatic_group&#34;,
+                &#34;primary_amine_three_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_one_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_two_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_three_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_one_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_two_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_three_carbon_aromatic_group&#34;,
+                &#34;methyl_branch_one_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_two_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_three_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_four_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_five_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_six_carbon_from_a_N_atom&#34;,
+                &#34;ethyl_chain&#34;,
+                &#34;propyl_chain&#34;,
+                &#34;butyl_chain&#34;,
+                &#34;pentyl_chain&#34;,
+                &#34;hexyl_chain&#34;,
+                &#34;poly_primary_and_or_secondary_amine&#34;,
+                &#34;poly_primary_and_or_secondary_and_or_tertiary_amine&#34;,
+                &#34;poly_alcohol&#34;,
+                &#34;pyrazine_aliphatic_C_2_and_5_substitution&#34;,
+                &#34;pyridine_aliphatic_C_2_and_5_substitution&#34;,
+                &#34;pyridine_aliphatic_C_2_substitution&#34;,
+                &#34;Presence_of_Boron&#34;,
+                &#34;Presence_of_Silicon&#34;,
+                &#34;Presence_of_Phosphurus&#34;,
+                &#34;Presence_of_Sulphur&#34;,
+                &#34;positive_charge_group&#34;,
+                &#34;negative_charge_group&#34;,
+            ],
+            2: [
+                &#34;ammonia&#34;,
+                &#34;primary_amine&#34;,
+                &#34;secondary_amine&#34;,
+                &#34;tertiary_amine&#34;,
+                &#34;quaternary_N&#34;,
+                &#34;aromatic_N_sp2&#34;,
+                &#34;carboxylic_acid&#34;,
+                &#34;primary_alcohol&#34;,
+                &#34;secondary_alcohol&#34;,
+                &#34;tertiary_alcohol&#34;,
+                &#34;t_butyl&#34;,
+                &#34;carbonyl&#34;,
+                &#34;halocarbon&#34;,
+                &#34;benezene_ring&#34;,
+                &#34;6_member_aromatic_c_and_n_ring&#34;,
+                &#34;6_member_c_and_o_ring&#34;,
+                &#34;5_c_ring&#34;,
+                &#34;5_member_aromatic_c_and_n_ring&#34;,
+                &#34;5_member_c_and_o_ring&#34;,
+                &#34;Cyclohexane&#34;,
+                &#34;Cyclohexylamine&#34;,
+                &#34;Aniline&#34;,
+                &#34;benzylamine&#34;,
+                &#34;piperidine&#34;,
+                &#34;pyridine&#34;,
+                &#34;pyrrole&#34;,
+                &#34;primary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;secondary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;tertiary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;primary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;secondary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;tertiary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_primary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_secondary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_tertiary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_primary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_secondary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_tertiary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;primary_amine_one_carbon_aromatic_group&#34;,
+                &#34;primary_amine_two_carbon_aromatic_group&#34;,
+                &#34;primary_amine_three_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_one_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_two_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_three_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_one_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_two_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_three_carbon_aromatic_group&#34;,
+                &#34;methyl_branch_one_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_two_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_three_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_four_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_five_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_six_carbon_from_a_N_atom&#34;,
+                &#34;ethyl_chain&#34;,
+                &#34;propyl_chain&#34;,
+                &#34;butyl_chain&#34;,
+                &#34;pentyl_chain&#34;,
+                &#34;hexyl_chain&#34;,
+                &#34;poly_primary_and_or_secondary_amine&#34;,
+                &#34;poly_primary_and_or_secondary_and_or_tertiary_amine&#34;,
+                &#34;poly_alcohol&#34;,
+                &#34;pyrazine_aliphatic_C_2_and_5_substitution&#34;,
+                &#34;pyridine_aliphatic_C_2_and_5_substitution&#34;,
+                &#34;pyridine_aliphatic_C_2_substitution&#34;,
+            ],
+        }
+
+        self.version_substructures = {
+            1: [
+                &#34;[NH3]&#34;,  # ammonia
+                &#34;[NX3;H2][C;!$(C=[#7,#8])]&#34;,  # 1&#39; amine
+                &#34;[NX3;H1][C;!$(C=[#7,#8])][C;!$(C=[#7,#8])]&#34;,  # 2&#39; amine
+                # 3&#39; amine
+                &#34;[NX3]([C;!$(C=[#7,#8])])([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]&#34;,
+                &#34;[NX4+]&#34;,  # ammonium
+                &#34;[N]=[C]&#34;,  # imine,
+                # N bonded to C &#34;[$([#6]~[#7]);!$([#6]-[#7])]&#34;, # nitrogen bonded to carbon with any bond other than a single bond
+                &#34;[#6]~[#7]&#34;,
+                &#34;[a]:[nX3,X2]:[a]&#34;,  # SP2 aromatic N
+                &#34;[CX3;$([#6]),$([O;H1])](=[OX1])[$([O])]&#34;,  # carboxylic acid
+                &#34;[#6][#6;!$(C(=O)[OH])][OH]&#34;,  # 1&#39; alcohol
+                &#34;[#6][#6]([#6])[OH]&#34;,  # 2&#39; alcohol&#39;
+                &#34;[#6][#6]([#6])([#6])[OH]&#34;,  # 3&#39; alcohol
+                &#34;[#6]C([CH3])([CH3])([CH3])&#34;,  # t-butyl
+                &#34;[CX3]=[O;!$(O*)]&#34;,  # Carbonyl
+                &#34;[#6]~[F,Cl,Br,I]&#34;,  # halo carbon
+                &#34;c1ccccc1&#34;,  # benzene
+                # aromatic n or c 6 member hetrocycle
+                &#34;[c,n]1[c,n][c,n][c,n][c,n][c,n]1&#34;,
+                &#34;[#6,#8]1~[#6,#8]~[#6,#8]~[#6,#8]~[#6,#8]~1&#34;,  # Any O and C 6 ring
+                &#34;[#6]1~[#6]~[#6]~[#6]~[#6]~1&#34;,  # any C 5 ring
+                # aromatic n or c 5 member hetrocycle
+                &#34;[c,n]1[c,n][c,n][c,n][c,n]1&#34;,
+                # any O or C 5 member ring system
+                &#34;[#6,#8]1~[#6,#8]~[#6,#8]~[#6,#8]~[#6,#8]~1&#34;,
+                &#34;C1CCCCC1&#34;,  # cyclohexane
+                # amine bound to ring
+                &#34;[NX3;H2,H1][#6]1~[#6]~[#6]~[#6]~[#6]~[#6]~1&#34;,
+                &#34;[NH2]c1ccccc1&#34;,  # 1&#39; amine bound to benzene
+                &#34;c1ccccc1[CH2][NH2]&#34;,  # benzyl NH2
+                &#34;C1N([#1])CCCC1&#34;,  # H connected to N in an unsaturated ring
+                &#34;c1ncccc1&#34;,  # Pyridine
+                &#34;c1n([H])ccc1&#34;,  # pyrrole
+                # see description
+                &#34;[$([#6]([OH])[#6][#7H2]);!$([#6]([OH])(=O)[#6][#7H2])]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#7H]([#6]));!$([#6]([OH])(=O)[#6][#7H]([#6]))]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#7]([#6])([#6]));!$([#6]([OH])(=O)[#6][#7]([#6])([#6]))]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#6][#7H2]);!$([#6]([OH])(=O)[#6][#6][#7H2])]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#6][#7H]([#6]));!$([#6]([OH])(=O)[#6][#6][#7H]([#6]))]&#34;,
+                &#34;[$([#6]([OH])[#6][#6][#7]([#6])([#6]));!$([#6]([OH])(=O)[#6][#6][#7]([#6])([#6]))]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7H2]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7H]([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7]([CX4])([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[NH2]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[NH]([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[N]([CX4])([CX4])&#34;,
+                &#34;[a][C][#7H2]&#34;,  # see description
+                &#34;[a][C][C][#7H2]&#34;,  # see description
+                &#34;[a][C][C][C][#7H2]&#34;,  # see description
+                &#34;[a][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][C][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[a][C][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[a][C][C][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[NH2][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4][CX4][CX4]([CH3])&#34;,
+                &#34;[CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,
+                &#34;[$([#7X3;H2][C;!$(C=[#7,#8])]),$([#7X3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])])].[$([#7X3;H2][C;!$(C=[#7,#8])]),&#34;
+                # poly 1&#39; 2&#39; amine
+                &#34;$([#7X3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])])]&#34;,
+                &#34;[$([#7X3;H2][C;!$(C=[#7,#8])]),$([#7X3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]),$([#7X3]([C;!$(C=[#7,#8])])&#34;
+                &#34;([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])])].[$([#7X3;H2][C;!$(C=[#7,#8])]),$([#7X3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]),&#34;
+                # poly 1&#39; 2&#39; or 3&#39; amine
+                &#34;$([#7X3]([C;!$(C=[#7,#8])])([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])])]&#34;,
+                &#34;[#6][O;H1].[#6][O;H1]&#34;,  # poly alcohol
+                # pyrazine aliphatic C2 and C5 substitution
+                &#34;n1c([CX4])cnc([CX4])c1&#34;,
+                # pyridine_aliphatic_C_2_and_5_substitution
+                &#34;n1c([CX4])ccc([CX4])c1&#34;,
+                &#34;n1cccc([CX4])c1&#34;,  # pyridine_aliphatic_C_2_substitution
+                &#34;[#5]&#34;,  # B
+                &#34;[#14]&#34;,  # Si
+                &#34;[#15]&#34;,  # P
+                &#34;[#16]&#34;,  # S
+                &#34;[+]&#34;,  # positive cahrged group
+                &#34;[-]&#34;,  # negative charge group
+            ],
+            2: [
+                &#34;[NH3]&#34;,  # ammonia
+                &#34;[NX3;H2][CX4;!$(C=[#7,#8])]&#34;,  # 1&#39; amine
+                &#34;[NX3;H1][CX4;!$(C=[#7,#8])][CX4;!$(C=[#7,#8])]&#34;,  # 2&#39; amine
+                # 3&#39; amine
+                &#34;[NX3]([CX4;!$(C=[#7,#8])])([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])]&#34;,
+                &#34;[NX4+]&#34;,  # ammonium
+                &#34;[a]:[nX3,X2]:[a]&#34;,  # SP2 aromatic N
+                &#34;[CX3;$([#6]),$([O;H1])](=[OX1])[$([O])]&#34;,  # carboxylic acid
+                &#34;[#6][#6;!$(C(=O)[OH])][OH]&#34;,  # 1&#39; alcohol
+                &#34;[#6][#6]([#6])[OH]&#34;,  # 2&#39; alcohol&#39;
+                &#34;[#6][#6]([#6])([#6])[OH]&#34;,  # 3&#39; alcohol
+                &#34;[#6]C([CH3])([CH3])([CH3])&#34;,  # t-butyl
+                &#34;[CX3]=[O;!$(O*)]&#34;,  # Carbonyl
+                &#34;[#6]~[F,Cl,Br,I]&#34;,  # halo carbon
+                &#34;c1ccccc1&#34;,  # benzene
+                # aromatic n or c 6 member hetrocycle
+                &#34;[c,n]1[c,n][c,n][c,n][c,n][c,n]1&#34;,
+                &#34;[#6,#8]1~[#6,#8]~[#6,#8]~[#6,#8]~[#6,#8]~1&#34;,  # Any O and C 6 ring
+                &#34;[#6]1~[#6]~[#6]~[#6]~[#6]~1&#34;,  # any C 5 ring
+                # aromatic n or c 5 member hetrocycle
+                &#34;[c,n]1[c,n][c,n][c,n][c,n]1&#34;,
+                # any O or C 5 member ring system
+                &#34;[#6,#8]1~[#6,#8]~[#6,#8]~[#6,#8]~[#6,#8]~1&#34;,
+                &#34;C1CCCCC1&#34;,  # cyclohexane
+                # amine bound to ring
+                &#34;[NX3;H2,H1][#6]1~[#6]~[#6]~[#6]~[#6]~[#6]~1&#34;,
+                &#34;[NH2]c1ccccc1&#34;,  # 1&#39; amine bound to benzene
+                &#34;c1ccccc1[CH2][NH2]&#34;,  # benzyl NH2
+                &#34;C1N([#1])CCCC1&#34;,  # H connected to N in an unsaturated ring
+                &#34;c1ncccc1&#34;,  # Pyridine
+                &#34;c1n([H])ccc1&#34;,  # pyrrole
+                # see description
+                &#34;[$([#6]([OH])[#6][#7H2]);!$([#6]([OH])(=O)[#6][#7H2])]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#7H]([#6]));!$([#6]([OH])(=O)[#6][#7H]([#6]))]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#7]([#6])([#6]));!$([#6]([OH])(=O)[#6][#7]([#6])([#6]))]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#6][#7H2]);!$([#6]([OH])(=O)[#6][#6][#7H2])]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#6][#7H]([#6]));!$([#6]([OH])(=O)[#6][#6][#7H]([#6]))]&#34;,
+                &#34;[$([#6]([OH])[#6][#6][#7]([#6])([#6]));!$([#6]([OH])(=O)[#6][#6][#7]([#6])([#6]))]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7H2]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7H]([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7]([CX4])([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[NH2]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[NH]([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[N]([CX4])([CX4])&#34;,
+                &#34;[a][C][#7H2]&#34;,  # see description
+                &#34;[a][C][C][#7H2]&#34;,  # see description
+                &#34;[a][C][C][C][#7H2]&#34;,  # see description
+                &#34;[a][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][C][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[a][C][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[a][C][C][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[NH2][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4][CX4][CX4]([CH3])&#34;,
+                &#34;[CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,
+                &#34;[$([#7X3;H2][CX4;!$(C=[#7,#8])]),$([#7X3;H1]([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])])].[$([#7X3;H2][CX4;!$(C=[#7,#8])]),&#34;
+                # poly 1&#39; 2&#39; amine
+                &#34;$([#7X3;H1]([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])])]&#34;,
+                &#34;[$([#7X3;H2][CX4;!$(C=[#7,#8])]),$([#7X3;H1]([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])]),$([#7X3]([CX4;!$(C=[#7,#8])])&#34;
+                &#34;([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])])].[$([#7X3;H2][CX4;!$(C=[#7,#8])]),$([#7X3;H1]([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])]),&#34;
+                # poly 1&#39; 2&#39; or 3&#39; amine
+                &#34;$([#7X3]([CX4;!$(C=[#7,#8])])([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])])]&#34;,
+                &#34;[#6][O;H1].[#6][O;H1]&#34;,  # poly alcohol
+                # pyrazine aliphatic C2 and C5 substitution
+                &#34;n1c([CX4])cnc([CX4])c1&#34;,
+                # pyridine_aliphatic_C_2_and_5_substitution
+                &#34;n1c([CX4])ccc([CX4])c1&#34;,
+                &#34;n1cccc([CX4])c1&#34;,  # pyridine_aliphatic_C_2_substitution
+            ],
+        }
+
+        try:
+            log.info(&#34;\n&#34;)
+        except Exception:
+            log = logging.getLogger(__name__)
+            log.info(&#34;\n&#34;)
+
+        self.fingerprint_version = fingerprint_version
+
+        if names is None:
+            self.names = self.get_default_names(
+                version=self.fingerprint_version)
+        else:
+            self.names = names
+
+        if substructures is None:
+            self.substructures = self.get_default_substructures(
+                version=self.fingerprint_version,
+            )
+        else:
+            self.substructures = substructures
+
+        if substructures is None and names is None:
+            self.fingerprint_explanation = self.get_default_explanation(
+                version=self.fingerprint_version,
+            )
+            if verbose is True:
+                log.info(
+                    &#34;Finger print is version {}\n{}&#34;.format(
+                        self.fingerprint_version, self.fingerprint_explanation,
+                    ),
+                )
+        else:
+            log.warning(
+                &#34;No fingerprint explanation avaliable as custom substructures have been given, hence you know better than I do what they mean.&#34;,
+            )
+
+        if len(self.names) != len(self.substructures):
+            try:
+                log.warning(
+                    &#34;WARNING - the number of names ({}) and the number of substructures ({}) is different, &#34;
+                    &#34;This will cause issues for defualt functions in this module. Names will be reset to indexes.&#34;.format(
+                        len(self.names), len(self.substructures),
+                    ),
+                )
+                self.names = [str(ith)
+                              for ith in enumerate(self.substructures)]
+                log.warning(
+                    &#34;New names and substructures:\n{}&#34;.format(
+                        &#34;\n&#34;.join(
+                            [
+                                &#34;{} : {}&#34;.format(n, s)
+                                for n, s in zip(self.names, self.substructures)
+                            ],
+                        ),
+                    ),
+                )
+            except NameError:
+                print(
+                    &#34;WARNING - the number of names ({}) and the number of substructures ({}) is different, &#34;
+                    &#34;This will cause issues for defualt functions in this module.&#34;.format(
+                        len(self.names), len(self.substructures),
+                    ),
+                )
+
+        log.info(
+            &#34;Please use the citation below for use of this code:\n{}&#34;.format(
+                citation),
+        )
+
+    def get_default_names(self, version: int = None) -&gt; list:
+        &#34;&#34;&#34;
+        Function to get the names descriptive names of the substructures we are looking for
+        Essentially these substructures look for the amine environment and groups which can interact with it. The first
+        elements identify specific groups. The later elements look for the motifs of closeness of certain functional
+        groups to the amine groups.
+        :param version: int - which version of the fingerprints to get name for
+        &#34;&#34;&#34;
+
+        if version is None:
+            version = self.fingerprint_version
+
+        return self.version_names[version]
+
+    def get_default_substructures(self, version: int = None) -&gt; list:
+        &#34;&#34;&#34;
+        Function get the smarts to search for substructures. Essentially these substructures look for the amine
+        environment and groups which can interact with it. The first elements identify specific groups. The
+        later elements look for the motifs of closeness of certain functional groups to the amine groups.
+        :param version: int - which version of the fingerprints to get substructures for
+        &#34;&#34;&#34;
+
+        if version is None:
+            version = self.fingerprint_version
+
+        return self.version_substructures[version]
+
+    def get_default_explanation(self, version: int = None) -&gt; str:
+        &#34;&#34;&#34;
+        Function to get the description of the version you have picked  names of the substrictires we are looking for
+        Essentially these substructures look for the amine environment and groups which can interact with it. The first
+        elements identify specific groups. The later elements look for the motifs of closeness of certain
+        functional groups to the amine groups.
+        :param version: int - which version of the fingerprints to get explanations for
+        &#34;&#34;&#34;
+
+        if version is None:
+            version = self.fingerprint_version
+
+        return self.version_explanations[version]
+
+    def get_fp_information(self, return_df: bool = False):
+        &#34;&#34;&#34;
+        Print the infomration related to the current fingerprint instantiation
+        &#34;&#34;&#34;
+
+        log = logging.getLogger(__name__)
+
+        log.info(
+            &#34;{:4} | {:59} | {:50}\n---------------------------------------------------------&#34;
+            &#34;-------------------------------------&#34;.format(
+                &#34;bit&#34;, &#34;description&#34;, &#34;smarts&#34;,
+            ),
+        )
+
+        names = []
+        for nam in self.names:
+            nam = &#34; &#34;.join(nam.split(&#34;_&#34;))
+            nam = &#34; &#34;.join(nam.split(&#34;-&#34;))
+            names.append(nam)
+
+        for ith, ds in enumerate(zip(names, self.substructures)):
+            log.info(&#34;{:4} | {:59} | {:50}&#34;.format(ith, ds[0], ds[1]))
+
+        if return_df is True:
+            df_information = pd.DataFrame(
+                np.array([names, self.substructures]).T,
+                columns=[&#34;description&#34;, &#34;smarts&#34;],
+            )
+            return df_information
+
+
+############## END of class ############
+
+
+def maccskeys_fingerprints(smiles: list) -&gt; list:
+    &#34;&#34;&#34;
+    Function to get MACCS fingerprints
+    :param smiles: list - smiles representation of the molecules to make fingerprints of
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    mols = [mai.smiles_to_molecule(smile) for smile in smiles]
+    fps = [MACCSkeys.GenMACCSKeys(mol) for mol in mols]
+
+    return fps
+
+
+def dask_substructure_checker(
+    representation: str, substructures: list = None, smiles=True,
+) -&gt; list:
+    &#34;&#34;&#34;
+    Function to find a substructure using SMARTS - Does not use dask but is used in functions that dask is used in
+    :param smi: str - smiles
+    :param substructures: iterable - SMARTS defining the substructure to search for
+    :return: tuple - smiles substructure and True/False for looking for the substructure
+    &gt;&gt;&gt; dask_substructure_checker(&#34;CC&#34;, [&#34;*CC*&#34;])
+    [1]
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    if smiles is True:
+        mol = mai.smiles_to_molecule(representation)
+    else:
+        mol = mai.inchi_to_molecule(representation)
+
+    substructs = [Chem.MolFromSmarts(substructure)
+                  for substructure in substructures]
+
+    fp_vec = [int(mol.HasSubstructMatch(substruct))
+              for substruct in substructs]
+
+    return fp_vec
+
+
+def ccs_fp(
+    representation: list,
+    substructures: list = None,
+    substructure_names: list = None,
+    return_smarts_only: bool = False,
+    version: int = 1,
+    thresh: int = 1000,
+    return_only_fingerprint: bool = False,
+    return_fingerprints_as_str: bool = False,
+    inchi_regex=&#34;InChI=&#34;,
+):
+    &#34;&#34;&#34;
+    Function to make a fingerprint out of the presence or not of a sub-structure using SMARTS. Note this uses
+    Lazy dask parallel execution to make the porcess run in parallel if number of representations is &gt;= thresh.
+    :param representation: tuple/list - smiles representations of molecules to check for substructure presence or absence
+    :param substructures: tuple or list - SMARTS tuple/list to look for to form the fingerprint
+    :param substructure_names: tuple or list - names of the substructure if given a dataframe is returned as well
+    :param return_smarts_only: bool - return only the keys for teh smarts in the substructure search
+    :param version: int - version of the predefined ccs fingerprint to use
+    :param thresh: int - number of smiles under which run in serial over or equal run in parallel with dask
+    :param return_only_fingerprint: bool - return only the fingerprints
+    :param inchi_regex: str - string to make sure a representation is inchi
+    :Returns: list, dask dataframe, list
+    &gt;&gt;&gt; ccs_fp([&#34;CCN&#34;], return_fingerprints_as_str=True)
+    [&#39;010000100000000000000000000000000000000000000000010000000000000000000000&#39;]
+    &gt;&gt;&gt; ccs_fp([&#34;InChI=1S/C2H7N/c1-2-3/h2-3H2,1H3&#34;], return_fingerprints_as_str=True)
+    [&#39;010000100000000000000000000000000000000000000000010000000000000000000000&#39;]
+    &gt;&gt;&gt; ccs_fp([&#34;CCN&#34;], return_fingerprints_as_str=True, version=2)
+    [&#39;0100000000000000000000000000000000000000000000010000000000000000&#39;]
+    &gt;&gt;&gt; ccs_fp([&#34;InChI=1S/C2H7N/c1-2-3/h2-3H2,1H3&#34;], return_fingerprints_as_str=True, version=2)
+    [&#39;0100000000000000000000000000000000000000000000010000000000000000&#39;]
+    &#34;&#34;&#34;
+    log = logging.getLogger(__name__)
+
+    # Essentially these substructures look for the amine environment and groups which can interact with it. The
+    # first elements identify specific groups. The later elements look for the motifs of closeness of certain
+    # functional groups to the amine groups.
+    ccus_substructs = ccus_fps(
+        names=substructure_names,
+        substructures=substructures,
+        fingerprint_version=version,
+        log=log,
+    )
+    substructure_names = ccus_substructs.names
+    substructures = ccus_substructs.substructures
+
+    if return_smarts_only is True:
+        return substructures
+
+    log.info(
+        &#34;Number of substructures: {} Number of substructure names: {}&#34;.format(
+            len(substructures), len(substructure_names),
+        ),
+    )
+    if len(substructures) != len(substructure_names):
+        log.error(
+            &#34;Number of substructures and names differ cannot produce dataframe: {} &#34;
+            &#34;{}&#34;.format(len(substructures), len(substructure_names)),
+        )
+        for s, n in zip(substructures, substructure_names):
+            log.info(&#34;{} {}&#34;.format(n, s))
+
+    # ASSUMPTION: no one puts a mix of smiles and inchi in
+    if inchi_regex in representation[0]:
+        log.info(
+            &#34;&#39;inchi=&#39; found in the first molecule, assume all molecules will be inchi not smiles!&#34;,
+        )
+        inchi = representation
+
+        log.info(&#34;Making fingerprint from {} InChI&#34;.format(len(inchi)))
+
+        # chunk larger datasets manually
+        if len(inchi) &gt;= thresh:
+            fps = []
+            iters = int(np.floor(len(inchi) / thresh)) + 1
+            limit = int(iters)
+            bases = [0 + i * thresh for i in range(iters)]
+            uppers = [thresh + i * thresh for i in range(iters)]
+            uppers[-1] = None
+            for b, u in zip(bases, uppers):
+                log.info(&#34;fingerprints computed for {} InChI&#34;.format(b))
+                log.info(&#34;InChI[{}:{}]&#34;.format(b, u))
+                inchs = inchi[b:u]
+
+                fp_tmp = [
+                    dask.delayed(dask_substructure_checker)(
+                        inc, substructures=substructures, smiles=False,
+                    )
+                    for inc in inchs
+                ]
+                fps = fps + fp_tmp
+
+            # compute fingerprints
+            log.info(&#34;Running DASK computation .....&#34;)
+            fps = dask.compute(*fps)
+            log.info(&#34;DASK complete fingerprints generated.&#34;)
+        else:
+            log.info(
+                &#34;Length of the InChI list is less than the threshold ({} change through function call) running &#34;
+                &#34;without DASK&#34;.format(thresh),
+            )
+            fps = [
+                dask_substructure_checker(
+                    inch, substructures=substructures, smiles=False,
+                )
+                for inch in inchi
+            ]
+            fps = dask.compute(*fps)
+
+        log.info(&#34;Preparing fingerprints&#34;)
+        if substructure_names is not None:
+            log.info(&#34;Building dataframe .....&#34;)
+            df = pd.DataFrame(data=fps, columns=substructure_names)
+            log.info(&#34;Building RDKit bits .....&#34;)
+            ffps = [
+                DataStructs.cDataStructs.CreateFromBitString(
+                    &#34;&#34;.join([str(ent) for ent in f]),
+                )
+                for f in fps
+            ]
+            log.info(&#34;Fingerprint generation finished.&#34;)
+
+            if return_fingerprints_as_str is True:
+                return [bits_to_text(f) for f in ffps]
+            elif return_only_fingerprint is True:
+                return ffps
+            else:
+                return ffps, df, substructures
+        else:
+            ffps = [
+                DataStructs.cDataStructs.CreateFromBitString(
+                    &#34;&#34;.join([str(ent) for ent in f]),
+                )
+                for f in fps
+            ]
+
+            if return_fingerprints_as_str is True:
+                return [bits_to_text(f) for f in ffps]
+            elif return_only_fingerprint is True:
+                return ffps
+            else:
+                return ffps, substructures
+
+    else:
+        log.info(
+            &#34;&#39;inchi=&#39; not found in the first molecule, assume all molecules will be SMILES not InChI!&#34;,
+        )
+        smiles = representation
+
+        log.info(&#34;Making fingerprint from {} SMILES&#34;.format(len(smiles)))
+
+        # chunk larger datasets manually
+        if len(smiles) &gt;= thresh:
+            fps = []
+            iters = int(np.floor(len(smiles) / thresh)) + 1
+            limit = int(iters)
+            bases = [0 + i * thresh for i in range(iters)]
+            uppers = [thresh + i * thresh for i in range(iters)]
+            uppers[-1] = None
+            for b, u in zip(bases, uppers):
+                log.info(&#34;fingerprints computed for {} smiles&#34;.format(b))
+                log.info(&#34;smiles[{}:{}]&#34;.format(b, u))
+                smis = smiles[b:u]
+
+                fp_tmp = [
+                    dask.delayed(dask_substructure_checker)(
+                        smi, substructures=substructures, smiles=True,
+                    )
+                    for smi in smis
+                ]
+                fps = fps + fp_tmp
+
+            # compute fingerprints
+            log.info(&#34;Running DASK computation .....&#34;)
+            fps = dask.compute(*fps)
+            log.info(&#34;DASK complete fingerprints generated.&#34;)
+        else:
+            log.info(
+                &#34;Length of the smiles list is less than the threshold ({} change through function call) running &#34;
+                &#34;without DASK&#34;.format(thresh),
+            )
+            fps = [
+                dask_substructure_checker(
+                    smi, substructures=substructures, smiles=True)
+                for smi in smiles
+            ]
+            fps = dask.compute(*fps)
+
+        log.info(&#34;Preparing fingerprints&#34;)
+        if substructure_names is not None:
+            log.info(&#34;Building dataframe .....&#34;)
+            df = pd.DataFrame(data=fps, columns=substructure_names)
+            log.info(&#34;Building RDKit bits .....&#34;)
+            ffps = [
+                DataStructs.cDataStructs.CreateFromBitString(
+                    &#34;&#34;.join([str(ent) for ent in f]),
+                )
+                for f in fps
+            ]
+            log.info(&#34;Fingerprint generation finished.&#34;)
+
+            if return_fingerprints_as_str is True:
+                return [bits_to_text(f) for f in ffps]
+            elif return_only_fingerprint is True:
+                return ffps
+            else:
+                return ffps, df, substructures
+        else:
+            ffps = [
+                DataStructs.cDataStructs.CreateFromBitString(
+                    &#34;&#34;.join([str(ent) for ent in f]),
+                )
+                for f in fps
+            ]
+
+            if return_fingerprints_as_str is True:
+                return [bits_to_text(f) for f in ffps]
+            elif return_only_fingerprint is True:
+                return ffps
+            else:
+                return ffps, substructures
+
+
+def substructure_checker(smiles: str, substructure: str = None) -&gt; int:
+    &#34;&#34;&#34;
+    Function to find a substructure using SMARTS
+    :param smi: str - smiles
+    :param substructure: str - SMARTS defining the substructure to search for
+    :return: tuple - smiles substructure and True/False for looking for the substructure
+    &gt;&gt;&gt; substructure_checker(&#34;CC&#34;, &#34;*CC*&#34;)
+    1
+    &#34;&#34;&#34;
+
+    mol = mai.smiles_to_molecule(smiles)
+
+    substruct = Chem.MolFromSmarts(substructure)
+
+    has_substructure = 0
+    if mol.HasSubstructMatch(substruct):
+        has_substructure = 1
+
+    return has_substructure
+
+
+def fingerprint_similarity(
+    fps1, fps2, dice: bool = False, return_distance: bool = False,
+) -&gt; float:
+    &#34;&#34;&#34;
+    Function to calculate fingerprint similarity
+    :param fps1: RDKit fingerprint - fingerprint of molecule 1
+    :param fps2: RDKit fingerprint - fingerprint of molecule 2
+    :param dice: true/false - Use dice similarity
+    :param return_distance: bool - return distance (1 - similarity)
+    &#34;&#34;&#34;
+
+    if dice is True:
+        similarity = dice_similarity(fps1, fps2)
+    else:
+        similarity = DataStructs.TanimotoSimilarity(fps1, fps2)
+
+    if return_distance is True:
+        similarity = 1.0 - similarity
+
+    return similarity
+
+
+def bits_to_text(fp) -&gt; str:
+    &#34;&#34;&#34;
+    Function to convert bit vec to text 0s and 1s
+    :param fp: RDKit bit fingerprint - RDKit bit fingerprint to be set to 1s and 0s
+    &gt;&gt;&gt; bits_to_text(maccskeys_fingerprints([&#34;CC&#34;])[0])
+    &#39;00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000100000000001000000&#39;
+    &#34;&#34;&#34;
+
+    text = DataStructs.cDataStructs.BitVectToText(fp)
+
+    return text
+
+
+def bulk_similarity(
+    fp, fp_targets: list, test: bool = False, thresh: float = 0.5,
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Function to compare one fp with a list of others and get all the scores
+    :param fp: RDKit fingerprint - fingerprint to compare to a list of fingerprint targets
+    :param fp_targets: list - fingerprint targets to compare fp to
+    :param test: bool - return only molecules with similarity greater than or equal to the thresh
+    :param thresh: float - threshold for similarity to be returned
+    :return:
+    &#34;&#34;&#34;
+
+    tani_similarity = DataStructs.BulkTanimotoSimilarity(fp, fp_targets)
+    data = np.array(
+        [
+            [i for i in range(0, len(fp_targets))],
+            [fp] * len(fp_targets),
+            fp_targets,
+            tani_similarity,
+        ],
+    ).T
+    df = pd.DataFrame(
+        data=data,
+        columns=[&#34;number&#34;, &#34;fp_reference&#34;, &#34;fp_target&#34;, &#34;tanimoto_similarity&#34;],
+    )
+
+    if test is True:
+        df = df[df[&#34;tanimoto_similarity&#34;] &gt;= thresh]
+    return df
+
+
+def dice_similarity(v1, v2):
+    &#34;&#34;&#34;
+    Function to return dice similarity between two bitvectors
+    :param v1: RDKit bit vector - chemcical represention as bit vector eg a bit vector fingerprint
+    :param v2: RDKit bit vector - chemcical represention as bit vector eg a bit vector fingerprint
+    &#34;&#34;&#34;
+
+    return DataStructs.DiceSimilarity(v1, v2)
+
+
+def diverse_set_picking(fps: list, n_diverse_batch: int = 10):
+    &#34;&#34;&#34;
+    A function using the commonly applied maxmin picking methods https://onlinelibrary.wiley.com/doi/epdf/10.1002/qsar.200290002
+    essentially the algorithm selects a seed molecule calculates dissimilarlity from a fingerprint distance metric
+    and adds the most dissimilar molecule to the set. This is stopped when either n molecules are picked or m threshold
+    in the distance metric is surpassed by all molecules.
+    :param fps: list of RDKit fingerprint - molecule fingerprints to use to pick a diverse set from
+    :param n_diverse_batch : int - the number of set members to include in the diverse set
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    diversity_picker = SimDivFilters.rdSimDivPickers.MaxMinPicker()
+
+    number_fps = len(fps)
+    diverse_indices = diversity_picker.LazyBitVectorPick(
+        fps, poolSize=number_fps, pickSize=n_diverse_batch, seed=random_seed,
+    )
+
+    log.debug(&#34;Diverse indices: {}&#34;.format(list(diverse_indices)))
+
+    return diverse_indices
+
+
+def contains_substructures(
+    smiles: list,
+    substructures: tuple = (
+        &#34;[NH3]&#34;,
+        &#34;[NX3;H2][C;!$(C=[#7,#8])]&#34;,
+        &#34;[NX3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]&#34;,
+        &#34;[NX3]([C;!$(C=[#7,#8])])([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]&#34;,
+        &#34;[$([nX3,X2](:[c,n,o,b,s]):[c,n,o,b,s])]&#34;,
+    ),
+    substructure_names: tuple = (
+        &#34;ammonia&#34;,
+        &#34;primiary_amine&#34;,
+        &#34;secondary_amine&#34;,
+        &#34;tertiary_amine&#34;,
+        &#34;aromatic_sp2_n&#34;,
+    ),
+    version_name: int = 1,
+    thresh: int = 1000,
+    remove_no_match_rows: bool = False,
+    test: bool = False,
+):
+    &#34;&#34;&#34;
+    Function to check if the smiles are amines or contain an aromatic N sp2
+    :param smiles: str - smiles string to look for substructure
+    :param substructures: iterable of str - smarts patterns to look for
+    :param substructure_names: iterable of str - description of the SMARTS patterns
+    :param version_name: int - ccs fp version number
+    :param thresh: int - batch threshold for fingerprint code
+    :param remove_no_match_rows: bool - remove rows with no matches
+    :param test: bool - for testing the function
+    :return: dataframe
+
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    log.info(&#34;Passing smiles and substructures to dask fp&#34;)
+    log.info(
+        &#34;Substructures:\n{}\n-----\n&#34;.format(
+            &#34;\n&#34;.join(
+                [
+                    &#34;{} ; {}&#34;.format(n, s)
+                    for n, s in zip(substructure_names, substructures)
+                ],
+            ),
+        ),
+    )
+
+    if isinstance(smiles, str):
+        log.info(
+            &#34;Smiles is expected to be a list assume it is one smiles and put in a list&#34;,
+        )
+        smiles = [smiles]
+
+    fingps, fingps_df, smarts = ccs_fp(
+        smiles,
+        substructures=substructures,
+        substructure_names=substructure_names,
+        return_smarts_only=False,
+        version=version_name,
+        thresh=thresh,
+    )
+
+    any_true = fingps_df.any(axis=1)
+    log.info(
+        &#34;The following rows have at least one of the substructures found: {}&#34;.format(
+            any_true,
+        ),
+    )
+    fingps_df[&#34;any_true&#34;] = any_true
+
+    # dataframe index values which have ata least one matching substructure
+    idx = fingps_df.index[fingps_df[&#34;any_true&#34;] == 0]
+
+    if remove_no_match_rows is True:
+        log.info(&#34;{}&#34;.format(fingps_df))
+        log.info(&#34;Dropping rows: {}&#34;.format(idx))
+        fingps_df.drop(idx, axis=0, inplace=True)
+
+    return fingps_df
+
+
+def ccus_fp_bitstr(
+    mol: rdkit.Chem.rdchem.Mol,
+    substructures: list = None,
+    substructure_names: list = None,
+    version: int = 1,
+):
+    &#34;&#34;&#34;
+    Function to find a substructure using SMARTS - Does not use dask but is used in functions that dask is used in
+    return the ccus fingerprint as a cDatastructs array.
+    :param mol: str - RDkit molecule
+    :param substructures: iterable - SMARTS defining the substructure to search for
+    :param substructure_names: iterable - names to describe the SMARTS substructure strings meaning
+    :param version: int - version of the fingerprints to use
+    :return: bitstr
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    if substructures is None:
+        ccus_substructs = ccus_fps(
+            names=substructure_names,
+            substructures=substructures,
+            fingerprint_version=version,
+            verbose=False,
+        )
+        if substructure_names is None:
+            substructure_names = ccus_substructs.names
+        substructures = ccus_substructs.substructures
+    if substructure_names is None:
+        ccus_substructs = ccus_fps(
+            names=substructure_names,
+            substructures=substructures,
+            fingerprint_version=version,
+            verbose=False,
+        )
+        if substructures is None:
+            substructures = ccus_substructs.substructures
+        substructure_names = ccus_substructs.names
+
+    substructs = [Chem.MolFromSmarts(substructure)
+                  for substructure in substructures]
+    fps = [int(mol.HasSubstructMatch(substruct)) for substruct in substructs]
+    ffps = DataStructs.cDataStructs.CreateFromBitString(
+        &#34;&#34;.join([str(ent) for ent in fps]),
+    )
+
+    return ffps
+
+
+if __name__ == &#34;__main__&#34;:
+    import doctest
+
+    doctest.testmod()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="ccsfp.informatics.finger_prints.bits_to_text"><code class="name flex">
+<span>def <span class="ident">bits_to_text</span></span>(<span>fp) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to convert bit vec to text 0s and 1s
+:param fp: RDKit bit fingerprint - RDKit bit fingerprint to be set to 1s and 0s</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; bits_to_text(maccskeys_fingerprints([&quot;CC&quot;])[0])
+'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000100000000001000000'
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bits_to_text(fp) -&gt; str:
+    &#34;&#34;&#34;
+    Function to convert bit vec to text 0s and 1s
+    :param fp: RDKit bit fingerprint - RDKit bit fingerprint to be set to 1s and 0s
+    &gt;&gt;&gt; bits_to_text(maccskeys_fingerprints([&#34;CC&#34;])[0])
+    &#39;00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000100000000001000000&#39;
+    &#34;&#34;&#34;
+
+    text = DataStructs.cDataStructs.BitVectToText(fp)
+
+    return text</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.bulk_similarity"><code class="name flex">
+<span>def <span class="ident">bulk_similarity</span></span>(<span>fp, fp_targets: list, test: bool = False, thresh: float = 0.5) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to compare one fp with a list of others and get all the scores
+:param fp: RDKit fingerprint - fingerprint to compare to a list of fingerprint targets
+:param fp_targets: list - fingerprint targets to compare fp to
+:param test: bool - return only molecules with similarity greater than or equal to the thresh
+:param thresh: float - threshold for similarity to be returned
+:return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bulk_similarity(
+    fp, fp_targets: list, test: bool = False, thresh: float = 0.5,
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Function to compare one fp with a list of others and get all the scores
+    :param fp: RDKit fingerprint - fingerprint to compare to a list of fingerprint targets
+    :param fp_targets: list - fingerprint targets to compare fp to
+    :param test: bool - return only molecules with similarity greater than or equal to the thresh
+    :param thresh: float - threshold for similarity to be returned
+    :return:
+    &#34;&#34;&#34;
+
+    tani_similarity = DataStructs.BulkTanimotoSimilarity(fp, fp_targets)
+    data = np.array(
+        [
+            [i for i in range(0, len(fp_targets))],
+            [fp] * len(fp_targets),
+            fp_targets,
+            tani_similarity,
+        ],
+    ).T
+    df = pd.DataFrame(
+        data=data,
+        columns=[&#34;number&#34;, &#34;fp_reference&#34;, &#34;fp_target&#34;, &#34;tanimoto_similarity&#34;],
+    )
+
+    if test is True:
+        df = df[df[&#34;tanimoto_similarity&#34;] &gt;= thresh]
+    return df</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.ccs_fp"><code class="name flex">
+<span>def <span class="ident">ccs_fp</span></span>(<span>representation: list, substructures: list = None, substructure_names: list = None, return_smarts_only: bool = False, version: int = 1, thresh: int = 1000, return_only_fingerprint: bool = False, return_fingerprints_as_str: bool = False, inchi_regex='InChI=')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to make a fingerprint out of the presence or not of a sub-structure using SMARTS. Note this uses
+Lazy dask parallel execution to make the porcess run in parallel if number of representations is &gt;= thresh.
+:param representation: tuple/list - smiles representations of molecules to check for substructure presence or absence
+:param substructures: tuple or list - SMARTS tuple/list to look for to form the fingerprint
+:param substructure_names: tuple or list - names of the substructure if given a dataframe is returned as well
+:param return_smarts_only: bool - return only the keys for teh smarts in the substructure search
+:param version: int - version of the predefined ccs fingerprint to use
+:param thresh: int - number of smiles under which run in serial over or equal run in parallel with dask
+:param return_only_fingerprint: bool - return only the fingerprints
+:param inchi_regex: str - string to make sure a representation is inchi
+:Returns: list, dask dataframe, list</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; ccs_fp([&quot;CCN&quot;], return_fingerprints_as_str=True)
+['010000100000000000000000000000000000000000000000010000000000000000000000']
+&gt;&gt;&gt; ccs_fp([&quot;InChI=1S/C2H7N/c1-2-3/h2-3H2,1H3&quot;], return_fingerprints_as_str=True)
+['010000100000000000000000000000000000000000000000010000000000000000000000']
+&gt;&gt;&gt; ccs_fp([&quot;CCN&quot;], return_fingerprints_as_str=True, version=2)
+['0100000000000000000000000000000000000000000000010000000000000000']
+&gt;&gt;&gt; ccs_fp([&quot;InChI=1S/C2H7N/c1-2-3/h2-3H2,1H3&quot;], return_fingerprints_as_str=True, version=2)
+['0100000000000000000000000000000000000000000000010000000000000000']
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ccs_fp(
+    representation: list,
+    substructures: list = None,
+    substructure_names: list = None,
+    return_smarts_only: bool = False,
+    version: int = 1,
+    thresh: int = 1000,
+    return_only_fingerprint: bool = False,
+    return_fingerprints_as_str: bool = False,
+    inchi_regex=&#34;InChI=&#34;,
+):
+    &#34;&#34;&#34;
+    Function to make a fingerprint out of the presence or not of a sub-structure using SMARTS. Note this uses
+    Lazy dask parallel execution to make the porcess run in parallel if number of representations is &gt;= thresh.
+    :param representation: tuple/list - smiles representations of molecules to check for substructure presence or absence
+    :param substructures: tuple or list - SMARTS tuple/list to look for to form the fingerprint
+    :param substructure_names: tuple or list - names of the substructure if given a dataframe is returned as well
+    :param return_smarts_only: bool - return only the keys for teh smarts in the substructure search
+    :param version: int - version of the predefined ccs fingerprint to use
+    :param thresh: int - number of smiles under which run in serial over or equal run in parallel with dask
+    :param return_only_fingerprint: bool - return only the fingerprints
+    :param inchi_regex: str - string to make sure a representation is inchi
+    :Returns: list, dask dataframe, list
+    &gt;&gt;&gt; ccs_fp([&#34;CCN&#34;], return_fingerprints_as_str=True)
+    [&#39;010000100000000000000000000000000000000000000000010000000000000000000000&#39;]
+    &gt;&gt;&gt; ccs_fp([&#34;InChI=1S/C2H7N/c1-2-3/h2-3H2,1H3&#34;], return_fingerprints_as_str=True)
+    [&#39;010000100000000000000000000000000000000000000000010000000000000000000000&#39;]
+    &gt;&gt;&gt; ccs_fp([&#34;CCN&#34;], return_fingerprints_as_str=True, version=2)
+    [&#39;0100000000000000000000000000000000000000000000010000000000000000&#39;]
+    &gt;&gt;&gt; ccs_fp([&#34;InChI=1S/C2H7N/c1-2-3/h2-3H2,1H3&#34;], return_fingerprints_as_str=True, version=2)
+    [&#39;0100000000000000000000000000000000000000000000010000000000000000&#39;]
+    &#34;&#34;&#34;
+    log = logging.getLogger(__name__)
+
+    # Essentially these substructures look for the amine environment and groups which can interact with it. The
+    # first elements identify specific groups. The later elements look for the motifs of closeness of certain
+    # functional groups to the amine groups.
+    ccus_substructs = ccus_fps(
+        names=substructure_names,
+        substructures=substructures,
+        fingerprint_version=version,
+        log=log,
+    )
+    substructure_names = ccus_substructs.names
+    substructures = ccus_substructs.substructures
+
+    if return_smarts_only is True:
+        return substructures
+
+    log.info(
+        &#34;Number of substructures: {} Number of substructure names: {}&#34;.format(
+            len(substructures), len(substructure_names),
+        ),
+    )
+    if len(substructures) != len(substructure_names):
+        log.error(
+            &#34;Number of substructures and names differ cannot produce dataframe: {} &#34;
+            &#34;{}&#34;.format(len(substructures), len(substructure_names)),
+        )
+        for s, n in zip(substructures, substructure_names):
+            log.info(&#34;{} {}&#34;.format(n, s))
+
+    # ASSUMPTION: no one puts a mix of smiles and inchi in
+    if inchi_regex in representation[0]:
+        log.info(
+            &#34;&#39;inchi=&#39; found in the first molecule, assume all molecules will be inchi not smiles!&#34;,
+        )
+        inchi = representation
+
+        log.info(&#34;Making fingerprint from {} InChI&#34;.format(len(inchi)))
+
+        # chunk larger datasets manually
+        if len(inchi) &gt;= thresh:
+            fps = []
+            iters = int(np.floor(len(inchi) / thresh)) + 1
+            limit = int(iters)
+            bases = [0 + i * thresh for i in range(iters)]
+            uppers = [thresh + i * thresh for i in range(iters)]
+            uppers[-1] = None
+            for b, u in zip(bases, uppers):
+                log.info(&#34;fingerprints computed for {} InChI&#34;.format(b))
+                log.info(&#34;InChI[{}:{}]&#34;.format(b, u))
+                inchs = inchi[b:u]
+
+                fp_tmp = [
+                    dask.delayed(dask_substructure_checker)(
+                        inc, substructures=substructures, smiles=False,
+                    )
+                    for inc in inchs
+                ]
+                fps = fps + fp_tmp
+
+            # compute fingerprints
+            log.info(&#34;Running DASK computation .....&#34;)
+            fps = dask.compute(*fps)
+            log.info(&#34;DASK complete fingerprints generated.&#34;)
+        else:
+            log.info(
+                &#34;Length of the InChI list is less than the threshold ({} change through function call) running &#34;
+                &#34;without DASK&#34;.format(thresh),
+            )
+            fps = [
+                dask_substructure_checker(
+                    inch, substructures=substructures, smiles=False,
+                )
+                for inch in inchi
+            ]
+            fps = dask.compute(*fps)
+
+        log.info(&#34;Preparing fingerprints&#34;)
+        if substructure_names is not None:
+            log.info(&#34;Building dataframe .....&#34;)
+            df = pd.DataFrame(data=fps, columns=substructure_names)
+            log.info(&#34;Building RDKit bits .....&#34;)
+            ffps = [
+                DataStructs.cDataStructs.CreateFromBitString(
+                    &#34;&#34;.join([str(ent) for ent in f]),
+                )
+                for f in fps
+            ]
+            log.info(&#34;Fingerprint generation finished.&#34;)
+
+            if return_fingerprints_as_str is True:
+                return [bits_to_text(f) for f in ffps]
+            elif return_only_fingerprint is True:
+                return ffps
+            else:
+                return ffps, df, substructures
+        else:
+            ffps = [
+                DataStructs.cDataStructs.CreateFromBitString(
+                    &#34;&#34;.join([str(ent) for ent in f]),
+                )
+                for f in fps
+            ]
+
+            if return_fingerprints_as_str is True:
+                return [bits_to_text(f) for f in ffps]
+            elif return_only_fingerprint is True:
+                return ffps
+            else:
+                return ffps, substructures
+
+    else:
+        log.info(
+            &#34;&#39;inchi=&#39; not found in the first molecule, assume all molecules will be SMILES not InChI!&#34;,
+        )
+        smiles = representation
+
+        log.info(&#34;Making fingerprint from {} SMILES&#34;.format(len(smiles)))
+
+        # chunk larger datasets manually
+        if len(smiles) &gt;= thresh:
+            fps = []
+            iters = int(np.floor(len(smiles) / thresh)) + 1
+            limit = int(iters)
+            bases = [0 + i * thresh for i in range(iters)]
+            uppers = [thresh + i * thresh for i in range(iters)]
+            uppers[-1] = None
+            for b, u in zip(bases, uppers):
+                log.info(&#34;fingerprints computed for {} smiles&#34;.format(b))
+                log.info(&#34;smiles[{}:{}]&#34;.format(b, u))
+                smis = smiles[b:u]
+
+                fp_tmp = [
+                    dask.delayed(dask_substructure_checker)(
+                        smi, substructures=substructures, smiles=True,
+                    )
+                    for smi in smis
+                ]
+                fps = fps + fp_tmp
+
+            # compute fingerprints
+            log.info(&#34;Running DASK computation .....&#34;)
+            fps = dask.compute(*fps)
+            log.info(&#34;DASK complete fingerprints generated.&#34;)
+        else:
+            log.info(
+                &#34;Length of the smiles list is less than the threshold ({} change through function call) running &#34;
+                &#34;without DASK&#34;.format(thresh),
+            )
+            fps = [
+                dask_substructure_checker(
+                    smi, substructures=substructures, smiles=True)
+                for smi in smiles
+            ]
+            fps = dask.compute(*fps)
+
+        log.info(&#34;Preparing fingerprints&#34;)
+        if substructure_names is not None:
+            log.info(&#34;Building dataframe .....&#34;)
+            df = pd.DataFrame(data=fps, columns=substructure_names)
+            log.info(&#34;Building RDKit bits .....&#34;)
+            ffps = [
+                DataStructs.cDataStructs.CreateFromBitString(
+                    &#34;&#34;.join([str(ent) for ent in f]),
+                )
+                for f in fps
+            ]
+            log.info(&#34;Fingerprint generation finished.&#34;)
+
+            if return_fingerprints_as_str is True:
+                return [bits_to_text(f) for f in ffps]
+            elif return_only_fingerprint is True:
+                return ffps
+            else:
+                return ffps, df, substructures
+        else:
+            ffps = [
+                DataStructs.cDataStructs.CreateFromBitString(
+                    &#34;&#34;.join([str(ent) for ent in f]),
+                )
+                for f in fps
+            ]
+
+            if return_fingerprints_as_str is True:
+                return [bits_to_text(f) for f in ffps]
+            elif return_only_fingerprint is True:
+                return ffps
+            else:
+                return ffps, substructures</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.ccus_fp_bitstr"><code class="name flex">
+<span>def <span class="ident">ccus_fp_bitstr</span></span>(<span>mol: rdkit.Chem.rdchem.Mol, substructures: list = None, substructure_names: list = None, version: int = 1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to find a substructure using SMARTS - Does not use dask but is used in functions that dask is used in
+return the ccus fingerprint as a cDatastructs array.
+:param mol: str - RDkit molecule
+:param substructures: iterable - SMARTS defining the substructure to search for
+:param substructure_names: iterable - names to describe the SMARTS substructure strings meaning
+:param version: int - version of the fingerprints to use
+:return: bitstr</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ccus_fp_bitstr(
+    mol: rdkit.Chem.rdchem.Mol,
+    substructures: list = None,
+    substructure_names: list = None,
+    version: int = 1,
+):
+    &#34;&#34;&#34;
+    Function to find a substructure using SMARTS - Does not use dask but is used in functions that dask is used in
+    return the ccus fingerprint as a cDatastructs array.
+    :param mol: str - RDkit molecule
+    :param substructures: iterable - SMARTS defining the substructure to search for
+    :param substructure_names: iterable - names to describe the SMARTS substructure strings meaning
+    :param version: int - version of the fingerprints to use
+    :return: bitstr
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    if substructures is None:
+        ccus_substructs = ccus_fps(
+            names=substructure_names,
+            substructures=substructures,
+            fingerprint_version=version,
+            verbose=False,
+        )
+        if substructure_names is None:
+            substructure_names = ccus_substructs.names
+        substructures = ccus_substructs.substructures
+    if substructure_names is None:
+        ccus_substructs = ccus_fps(
+            names=substructure_names,
+            substructures=substructures,
+            fingerprint_version=version,
+            verbose=False,
+        )
+        if substructures is None:
+            substructures = ccus_substructs.substructures
+        substructure_names = ccus_substructs.names
+
+    substructs = [Chem.MolFromSmarts(substructure)
+                  for substructure in substructures]
+    fps = [int(mol.HasSubstructMatch(substruct)) for substruct in substructs]
+    ffps = DataStructs.cDataStructs.CreateFromBitString(
+        &#34;&#34;.join([str(ent) for ent in fps]),
+    )
+
+    return ffps</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.contains_substructures"><code class="name flex">
+<span>def <span class="ident">contains_substructures</span></span>(<span>smiles: list, substructures: tuple = ('[NH3]', '[NX3;H2][C;!$(C=[#7,#8])]', '[NX3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]', '[NX3]([C;!$(C=[#7,#8])])([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]', '[$([nX3,X2](:[c,n,o,b,s]):[c,n,o,b,s])]'), substructure_names: tuple = ('ammonia', 'primiary_amine', 'secondary_amine', 'tertiary_amine', 'aromatic_sp2_n'), version_name: int = 1, thresh: int = 1000, remove_no_match_rows: bool = False, test: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to check if the smiles are amines or contain an aromatic N sp2
+:param smiles: str - smiles string to look for substructure
+:param substructures: iterable of str - smarts patterns to look for
+:param substructure_names: iterable of str - description of the SMARTS patterns
+:param version_name: int - ccs fp version number
+:param thresh: int - batch threshold for fingerprint code
+:param remove_no_match_rows: bool - remove rows with no matches
+:param test: bool - for testing the function
+:return: dataframe</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def contains_substructures(
+    smiles: list,
+    substructures: tuple = (
+        &#34;[NH3]&#34;,
+        &#34;[NX3;H2][C;!$(C=[#7,#8])]&#34;,
+        &#34;[NX3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]&#34;,
+        &#34;[NX3]([C;!$(C=[#7,#8])])([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]&#34;,
+        &#34;[$([nX3,X2](:[c,n,o,b,s]):[c,n,o,b,s])]&#34;,
+    ),
+    substructure_names: tuple = (
+        &#34;ammonia&#34;,
+        &#34;primiary_amine&#34;,
+        &#34;secondary_amine&#34;,
+        &#34;tertiary_amine&#34;,
+        &#34;aromatic_sp2_n&#34;,
+    ),
+    version_name: int = 1,
+    thresh: int = 1000,
+    remove_no_match_rows: bool = False,
+    test: bool = False,
+):
+    &#34;&#34;&#34;
+    Function to check if the smiles are amines or contain an aromatic N sp2
+    :param smiles: str - smiles string to look for substructure
+    :param substructures: iterable of str - smarts patterns to look for
+    :param substructure_names: iterable of str - description of the SMARTS patterns
+    :param version_name: int - ccs fp version number
+    :param thresh: int - batch threshold for fingerprint code
+    :param remove_no_match_rows: bool - remove rows with no matches
+    :param test: bool - for testing the function
+    :return: dataframe
+
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    log.info(&#34;Passing smiles and substructures to dask fp&#34;)
+    log.info(
+        &#34;Substructures:\n{}\n-----\n&#34;.format(
+            &#34;\n&#34;.join(
+                [
+                    &#34;{} ; {}&#34;.format(n, s)
+                    for n, s in zip(substructure_names, substructures)
+                ],
+            ),
+        ),
+    )
+
+    if isinstance(smiles, str):
+        log.info(
+            &#34;Smiles is expected to be a list assume it is one smiles and put in a list&#34;,
+        )
+        smiles = [smiles]
+
+    fingps, fingps_df, smarts = ccs_fp(
+        smiles,
+        substructures=substructures,
+        substructure_names=substructure_names,
+        return_smarts_only=False,
+        version=version_name,
+        thresh=thresh,
+    )
+
+    any_true = fingps_df.any(axis=1)
+    log.info(
+        &#34;The following rows have at least one of the substructures found: {}&#34;.format(
+            any_true,
+        ),
+    )
+    fingps_df[&#34;any_true&#34;] = any_true
+
+    # dataframe index values which have ata least one matching substructure
+    idx = fingps_df.index[fingps_df[&#34;any_true&#34;] == 0]
+
+    if remove_no_match_rows is True:
+        log.info(&#34;{}&#34;.format(fingps_df))
+        log.info(&#34;Dropping rows: {}&#34;.format(idx))
+        fingps_df.drop(idx, axis=0, inplace=True)
+
+    return fingps_df</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.dask_substructure_checker"><code class="name flex">
+<span>def <span class="ident">dask_substructure_checker</span></span>(<span>representation: str, substructures: list = None, smiles=True) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to find a substructure using SMARTS - Does not use dask but is used in functions that dask is used in
+:param smi: str - smiles
+:param substructures: iterable - SMARTS defining the substructure to search for
+:return: tuple - smiles substructure and True/False for looking for the substructure</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; dask_substructure_checker(&quot;CC&quot;, [&quot;*CC*&quot;])
+[1]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dask_substructure_checker(
+    representation: str, substructures: list = None, smiles=True,
+) -&gt; list:
+    &#34;&#34;&#34;
+    Function to find a substructure using SMARTS - Does not use dask but is used in functions that dask is used in
+    :param smi: str - smiles
+    :param substructures: iterable - SMARTS defining the substructure to search for
+    :return: tuple - smiles substructure and True/False for looking for the substructure
+    &gt;&gt;&gt; dask_substructure_checker(&#34;CC&#34;, [&#34;*CC*&#34;])
+    [1]
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    if smiles is True:
+        mol = mai.smiles_to_molecule(representation)
+    else:
+        mol = mai.inchi_to_molecule(representation)
+
+    substructs = [Chem.MolFromSmarts(substructure)
+                  for substructure in substructures]
+
+    fp_vec = [int(mol.HasSubstructMatch(substruct))
+              for substruct in substructs]
+
+    return fp_vec</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.dice_similarity"><code class="name flex">
+<span>def <span class="ident">dice_similarity</span></span>(<span>v1, v2)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to return dice similarity between two bitvectors
+:param v1: RDKit bit vector - chemcical represention as bit vector eg a bit vector fingerprint
+:param v2: RDKit bit vector - chemcical represention as bit vector eg a bit vector fingerprint</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dice_similarity(v1, v2):
+    &#34;&#34;&#34;
+    Function to return dice similarity between two bitvectors
+    :param v1: RDKit bit vector - chemcical represention as bit vector eg a bit vector fingerprint
+    :param v2: RDKit bit vector - chemcical represention as bit vector eg a bit vector fingerprint
+    &#34;&#34;&#34;
+
+    return DataStructs.DiceSimilarity(v1, v2)</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.diverse_set_picking"><code class="name flex">
+<span>def <span class="ident">diverse_set_picking</span></span>(<span>fps: list, n_diverse_batch: int = 10)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A function using the commonly applied maxmin picking methods <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/qsar.200290002">https://onlinelibrary.wiley.com/doi/epdf/10.1002/qsar.200290002</a>
+essentially the algorithm selects a seed molecule calculates dissimilarlity from a fingerprint distance metric
+and adds the most dissimilar molecule to the set. This is stopped when either n molecules are picked or m threshold
+in the distance metric is surpassed by all molecules.
+:param fps: list of RDKit fingerprint - molecule fingerprints to use to pick a diverse set from
+:param n_diverse_batch : int - the number of set members to include in the diverse set</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def diverse_set_picking(fps: list, n_diverse_batch: int = 10):
+    &#34;&#34;&#34;
+    A function using the commonly applied maxmin picking methods https://onlinelibrary.wiley.com/doi/epdf/10.1002/qsar.200290002
+    essentially the algorithm selects a seed molecule calculates dissimilarlity from a fingerprint distance metric
+    and adds the most dissimilar molecule to the set. This is stopped when either n molecules are picked or m threshold
+    in the distance metric is surpassed by all molecules.
+    :param fps: list of RDKit fingerprint - molecule fingerprints to use to pick a diverse set from
+    :param n_diverse_batch : int - the number of set members to include in the diverse set
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    diversity_picker = SimDivFilters.rdSimDivPickers.MaxMinPicker()
+
+    number_fps = len(fps)
+    diverse_indices = diversity_picker.LazyBitVectorPick(
+        fps, poolSize=number_fps, pickSize=n_diverse_batch, seed=random_seed,
+    )
+
+    log.debug(&#34;Diverse indices: {}&#34;.format(list(diverse_indices)))
+
+    return diverse_indices</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.fingerprint_similarity"><code class="name flex">
+<span>def <span class="ident">fingerprint_similarity</span></span>(<span>fps1, fps2, dice: bool = False, return_distance: bool = False) ‑> float</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to calculate fingerprint similarity
+:param fps1: RDKit fingerprint - fingerprint of molecule 1
+:param fps2: RDKit fingerprint - fingerprint of molecule 2
+:param dice: true/false - Use dice similarity
+:param return_distance: bool - return distance (1 - similarity)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fingerprint_similarity(
+    fps1, fps2, dice: bool = False, return_distance: bool = False,
+) -&gt; float:
+    &#34;&#34;&#34;
+    Function to calculate fingerprint similarity
+    :param fps1: RDKit fingerprint - fingerprint of molecule 1
+    :param fps2: RDKit fingerprint - fingerprint of molecule 2
+    :param dice: true/false - Use dice similarity
+    :param return_distance: bool - return distance (1 - similarity)
+    &#34;&#34;&#34;
+
+    if dice is True:
+        similarity = dice_similarity(fps1, fps2)
+    else:
+        similarity = DataStructs.TanimotoSimilarity(fps1, fps2)
+
+    if return_distance is True:
+        similarity = 1.0 - similarity
+
+    return similarity</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.maccskeys_fingerprints"><code class="name flex">
+<span>def <span class="ident">maccskeys_fingerprints</span></span>(<span>smiles: list) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to get MACCS fingerprints
+:param smiles: list - smiles representation of the molecules to make fingerprints of</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def maccskeys_fingerprints(smiles: list) -&gt; list:
+    &#34;&#34;&#34;
+    Function to get MACCS fingerprints
+    :param smiles: list - smiles representation of the molecules to make fingerprints of
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    mols = [mai.smiles_to_molecule(smile) for smile in smiles]
+    fps = [MACCSkeys.GenMACCSKeys(mol) for mol in mols]
+
+    return fps</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.substructure_checker"><code class="name flex">
+<span>def <span class="ident">substructure_checker</span></span>(<span>smiles: str, substructure: str = None) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to find a substructure using SMARTS
+:param smi: str - smiles
+:param substructure: str - SMARTS defining the substructure to search for
+:return: tuple - smiles substructure and True/False for looking for the substructure</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; substructure_checker(&quot;CC&quot;, &quot;*CC*&quot;)
+1
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def substructure_checker(smiles: str, substructure: str = None) -&gt; int:
+    &#34;&#34;&#34;
+    Function to find a substructure using SMARTS
+    :param smi: str - smiles
+    :param substructure: str - SMARTS defining the substructure to search for
+    :return: tuple - smiles substructure and True/False for looking for the substructure
+    &gt;&gt;&gt; substructure_checker(&#34;CC&#34;, &#34;*CC*&#34;)
+    1
+    &#34;&#34;&#34;
+
+    mol = mai.smiles_to_molecule(smiles)
+
+    substruct = Chem.MolFromSmarts(substructure)
+
+    has_substructure = 0
+    if mol.HasSubstructMatch(substruct):
+        has_substructure = 1
+
+    return has_substructure</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="ccsfp.informatics.finger_prints.ccus_fps"><code class="flex name class">
+<span>class <span class="ident">ccus_fps</span></span>
+<span>(</span><span>fingerprint_version: int = 1, names: list = None, substructures: list = None, log: logging.Logger = None, verbose: bool = True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialise the class
+:param fingerprint_version: int - version number
+:param names: iterable - list of names of the substructure to use for the fingerprint
+:param substructures: iterable - list of substructure strings in smarts notation
+:param log: logging.Logger - logger object
+:param verbose: bool - print extra information is verbose</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ccus_fps(object):
+    def __init__(
+        self,
+        fingerprint_version: int = 1,
+        names: list = None,
+        substructures: list = None,
+        log: logging.Logger = None,
+        verbose: bool = True,
+    ):
+        &#34;&#34;&#34;
+        Initialise the class
+        :param fingerprint_version: int - version number
+        :param names: iterable - list of names of the substructure to use for the fingerprint
+        :param substructures: iterable - list of substructure strings in smarts notation
+        :param log: logging.Logger - logger object
+        :param verbose: bool - print extra information is verbose
+        &#34;&#34;&#34;
+        self.version_explanations = {
+            1: &#34;This is a filtered set which seems to perform well for modelling this finger print includes rarer groups like&#34;
+            &#34;sulphur.&#34;,
+            2: &#34;This is a filtered set which seems to perform well for modelling but does not include rarer groups like&#34;
+            &#34;sulphur containing hetrocycles.&#34;,
+        }
+
+        self.version_names = {
+            1: [
+                &#34;ammonia&#34;,
+                &#34;primary_amine&#34;,
+                &#34;secondary_amine&#34;,
+                &#34;tertiary_amine&#34;,
+                &#34;quaternary_N&#34;,
+                &#34;imine&#34;,
+                &#34;nitrogen_bonded_to_carbon&#34;,
+                &#34;aromatic_N_sp2&#34;,
+                &#34;carboxylic_acid&#34;,
+                &#34;primary_alcohol&#34;,
+                &#34;secondary_alcohol&#34;,
+                &#34;tertiary_alcohol&#34;,
+                &#34;t_butyl&#34;,
+                &#34;carbonyl&#34;,
+                &#34;halocarbon&#34;,
+                &#34;benezene_ring&#34;,
+                &#34;6_member_aromatic_c_and_n_ring&#34;,
+                &#34;6_member_c_and_o_ring&#34;,
+                &#34;5_c_ring&#34;,
+                &#34;5_member_aromatic_c_and_n_ring&#34;,
+                &#34;5_member_c_and_o_ring&#34;,
+                &#34;Cyclohexane&#34;,
+                &#34;Cyclohexylamine&#34;,
+                &#34;Aniline&#34;,
+                &#34;benzylamine&#34;,
+                &#34;piperidine&#34;,
+                &#34;pyridine&#34;,
+                &#34;pyrrole&#34;,
+                &#34;primary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;secondary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;tertiary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;primary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;secondary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;tertiary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_primary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_secondary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_tertiary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_primary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_secondary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_tertiary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;primary_amine_one_carbon_aromatic_group&#34;,
+                &#34;primary_amine_two_carbon_aromatic_group&#34;,
+                &#34;primary_amine_three_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_one_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_two_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_three_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_one_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_two_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_three_carbon_aromatic_group&#34;,
+                &#34;methyl_branch_one_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_two_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_three_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_four_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_five_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_six_carbon_from_a_N_atom&#34;,
+                &#34;ethyl_chain&#34;,
+                &#34;propyl_chain&#34;,
+                &#34;butyl_chain&#34;,
+                &#34;pentyl_chain&#34;,
+                &#34;hexyl_chain&#34;,
+                &#34;poly_primary_and_or_secondary_amine&#34;,
+                &#34;poly_primary_and_or_secondary_and_or_tertiary_amine&#34;,
+                &#34;poly_alcohol&#34;,
+                &#34;pyrazine_aliphatic_C_2_and_5_substitution&#34;,
+                &#34;pyridine_aliphatic_C_2_and_5_substitution&#34;,
+                &#34;pyridine_aliphatic_C_2_substitution&#34;,
+                &#34;Presence_of_Boron&#34;,
+                &#34;Presence_of_Silicon&#34;,
+                &#34;Presence_of_Phosphurus&#34;,
+                &#34;Presence_of_Sulphur&#34;,
+                &#34;positive_charge_group&#34;,
+                &#34;negative_charge_group&#34;,
+            ],
+            2: [
+                &#34;ammonia&#34;,
+                &#34;primary_amine&#34;,
+                &#34;secondary_amine&#34;,
+                &#34;tertiary_amine&#34;,
+                &#34;quaternary_N&#34;,
+                &#34;aromatic_N_sp2&#34;,
+                &#34;carboxylic_acid&#34;,
+                &#34;primary_alcohol&#34;,
+                &#34;secondary_alcohol&#34;,
+                &#34;tertiary_alcohol&#34;,
+                &#34;t_butyl&#34;,
+                &#34;carbonyl&#34;,
+                &#34;halocarbon&#34;,
+                &#34;benezene_ring&#34;,
+                &#34;6_member_aromatic_c_and_n_ring&#34;,
+                &#34;6_member_c_and_o_ring&#34;,
+                &#34;5_c_ring&#34;,
+                &#34;5_member_aromatic_c_and_n_ring&#34;,
+                &#34;5_member_c_and_o_ring&#34;,
+                &#34;Cyclohexane&#34;,
+                &#34;Cyclohexylamine&#34;,
+                &#34;Aniline&#34;,
+                &#34;benzylamine&#34;,
+                &#34;piperidine&#34;,
+                &#34;pyridine&#34;,
+                &#34;pyrrole&#34;,
+                &#34;primary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;secondary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;tertiary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;primary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;secondary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;tertiary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_primary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_secondary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_tertiary_amino_alcohol_two_carbon_separation&#34;,
+                &#34;aliphatic_primary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_secondary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;aliphatic_tertiary_amino_alcohol_three_carbon_separation&#34;,
+                &#34;primary_amine_one_carbon_aromatic_group&#34;,
+                &#34;primary_amine_two_carbon_aromatic_group&#34;,
+                &#34;primary_amine_three_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_one_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_two_carbon_aromatic_group&#34;,
+                &#34;secondary_amine_three_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_one_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_two_carbon_aromatic_group&#34;,
+                &#34;tertiary_amine_three_carbon_aromatic_group&#34;,
+                &#34;methyl_branch_one_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_two_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_three_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_four_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_five_carbon_from_a_N_atom&#34;,
+                &#34;methyl_branch_six_carbon_from_a_N_atom&#34;,
+                &#34;ethyl_chain&#34;,
+                &#34;propyl_chain&#34;,
+                &#34;butyl_chain&#34;,
+                &#34;pentyl_chain&#34;,
+                &#34;hexyl_chain&#34;,
+                &#34;poly_primary_and_or_secondary_amine&#34;,
+                &#34;poly_primary_and_or_secondary_and_or_tertiary_amine&#34;,
+                &#34;poly_alcohol&#34;,
+                &#34;pyrazine_aliphatic_C_2_and_5_substitution&#34;,
+                &#34;pyridine_aliphatic_C_2_and_5_substitution&#34;,
+                &#34;pyridine_aliphatic_C_2_substitution&#34;,
+            ],
+        }
+
+        self.version_substructures = {
+            1: [
+                &#34;[NH3]&#34;,  # ammonia
+                &#34;[NX3;H2][C;!$(C=[#7,#8])]&#34;,  # 1&#39; amine
+                &#34;[NX3;H1][C;!$(C=[#7,#8])][C;!$(C=[#7,#8])]&#34;,  # 2&#39; amine
+                # 3&#39; amine
+                &#34;[NX3]([C;!$(C=[#7,#8])])([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]&#34;,
+                &#34;[NX4+]&#34;,  # ammonium
+                &#34;[N]=[C]&#34;,  # imine,
+                # N bonded to C &#34;[$([#6]~[#7]);!$([#6]-[#7])]&#34;, # nitrogen bonded to carbon with any bond other than a single bond
+                &#34;[#6]~[#7]&#34;,
+                &#34;[a]:[nX3,X2]:[a]&#34;,  # SP2 aromatic N
+                &#34;[CX3;$([#6]),$([O;H1])](=[OX1])[$([O])]&#34;,  # carboxylic acid
+                &#34;[#6][#6;!$(C(=O)[OH])][OH]&#34;,  # 1&#39; alcohol
+                &#34;[#6][#6]([#6])[OH]&#34;,  # 2&#39; alcohol&#39;
+                &#34;[#6][#6]([#6])([#6])[OH]&#34;,  # 3&#39; alcohol
+                &#34;[#6]C([CH3])([CH3])([CH3])&#34;,  # t-butyl
+                &#34;[CX3]=[O;!$(O*)]&#34;,  # Carbonyl
+                &#34;[#6]~[F,Cl,Br,I]&#34;,  # halo carbon
+                &#34;c1ccccc1&#34;,  # benzene
+                # aromatic n or c 6 member hetrocycle
+                &#34;[c,n]1[c,n][c,n][c,n][c,n][c,n]1&#34;,
+                &#34;[#6,#8]1~[#6,#8]~[#6,#8]~[#6,#8]~[#6,#8]~1&#34;,  # Any O and C 6 ring
+                &#34;[#6]1~[#6]~[#6]~[#6]~[#6]~1&#34;,  # any C 5 ring
+                # aromatic n or c 5 member hetrocycle
+                &#34;[c,n]1[c,n][c,n][c,n][c,n]1&#34;,
+                # any O or C 5 member ring system
+                &#34;[#6,#8]1~[#6,#8]~[#6,#8]~[#6,#8]~[#6,#8]~1&#34;,
+                &#34;C1CCCCC1&#34;,  # cyclohexane
+                # amine bound to ring
+                &#34;[NX3;H2,H1][#6]1~[#6]~[#6]~[#6]~[#6]~[#6]~1&#34;,
+                &#34;[NH2]c1ccccc1&#34;,  # 1&#39; amine bound to benzene
+                &#34;c1ccccc1[CH2][NH2]&#34;,  # benzyl NH2
+                &#34;C1N([#1])CCCC1&#34;,  # H connected to N in an unsaturated ring
+                &#34;c1ncccc1&#34;,  # Pyridine
+                &#34;c1n([H])ccc1&#34;,  # pyrrole
+                # see description
+                &#34;[$([#6]([OH])[#6][#7H2]);!$([#6]([OH])(=O)[#6][#7H2])]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#7H]([#6]));!$([#6]([OH])(=O)[#6][#7H]([#6]))]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#7]([#6])([#6]));!$([#6]([OH])(=O)[#6][#7]([#6])([#6]))]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#6][#7H2]);!$([#6]([OH])(=O)[#6][#6][#7H2])]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#6][#7H]([#6]));!$([#6]([OH])(=O)[#6][#6][#7H]([#6]))]&#34;,
+                &#34;[$([#6]([OH])[#6][#6][#7]([#6])([#6]));!$([#6]([OH])(=O)[#6][#6][#7]([#6])([#6]))]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7H2]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7H]([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7]([CX4])([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[NH2]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[NH]([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[N]([CX4])([CX4])&#34;,
+                &#34;[a][C][#7H2]&#34;,  # see description
+                &#34;[a][C][C][#7H2]&#34;,  # see description
+                &#34;[a][C][C][C][#7H2]&#34;,  # see description
+                &#34;[a][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][C][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[a][C][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[a][C][C][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[NH2][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4][CX4][CX4]([CH3])&#34;,
+                &#34;[CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,
+                &#34;[$([#7X3;H2][C;!$(C=[#7,#8])]),$([#7X3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])])].[$([#7X3;H2][C;!$(C=[#7,#8])]),&#34;
+                # poly 1&#39; 2&#39; amine
+                &#34;$([#7X3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])])]&#34;,
+                &#34;[$([#7X3;H2][C;!$(C=[#7,#8])]),$([#7X3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]),$([#7X3]([C;!$(C=[#7,#8])])&#34;
+                &#34;([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])])].[$([#7X3;H2][C;!$(C=[#7,#8])]),$([#7X3;H1]([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])]),&#34;
+                # poly 1&#39; 2&#39; or 3&#39; amine
+                &#34;$([#7X3]([C;!$(C=[#7,#8])])([C;!$(C=[#7,#8])])[C;!$(C=[#7,#8])])]&#34;,
+                &#34;[#6][O;H1].[#6][O;H1]&#34;,  # poly alcohol
+                # pyrazine aliphatic C2 and C5 substitution
+                &#34;n1c([CX4])cnc([CX4])c1&#34;,
+                # pyridine_aliphatic_C_2_and_5_substitution
+                &#34;n1c([CX4])ccc([CX4])c1&#34;,
+                &#34;n1cccc([CX4])c1&#34;,  # pyridine_aliphatic_C_2_substitution
+                &#34;[#5]&#34;,  # B
+                &#34;[#14]&#34;,  # Si
+                &#34;[#15]&#34;,  # P
+                &#34;[#16]&#34;,  # S
+                &#34;[+]&#34;,  # positive cahrged group
+                &#34;[-]&#34;,  # negative charge group
+            ],
+            2: [
+                &#34;[NH3]&#34;,  # ammonia
+                &#34;[NX3;H2][CX4;!$(C=[#7,#8])]&#34;,  # 1&#39; amine
+                &#34;[NX3;H1][CX4;!$(C=[#7,#8])][CX4;!$(C=[#7,#8])]&#34;,  # 2&#39; amine
+                # 3&#39; amine
+                &#34;[NX3]([CX4;!$(C=[#7,#8])])([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])]&#34;,
+                &#34;[NX4+]&#34;,  # ammonium
+                &#34;[a]:[nX3,X2]:[a]&#34;,  # SP2 aromatic N
+                &#34;[CX3;$([#6]),$([O;H1])](=[OX1])[$([O])]&#34;,  # carboxylic acid
+                &#34;[#6][#6;!$(C(=O)[OH])][OH]&#34;,  # 1&#39; alcohol
+                &#34;[#6][#6]([#6])[OH]&#34;,  # 2&#39; alcohol&#39;
+                &#34;[#6][#6]([#6])([#6])[OH]&#34;,  # 3&#39; alcohol
+                &#34;[#6]C([CH3])([CH3])([CH3])&#34;,  # t-butyl
+                &#34;[CX3]=[O;!$(O*)]&#34;,  # Carbonyl
+                &#34;[#6]~[F,Cl,Br,I]&#34;,  # halo carbon
+                &#34;c1ccccc1&#34;,  # benzene
+                # aromatic n or c 6 member hetrocycle
+                &#34;[c,n]1[c,n][c,n][c,n][c,n][c,n]1&#34;,
+                &#34;[#6,#8]1~[#6,#8]~[#6,#8]~[#6,#8]~[#6,#8]~1&#34;,  # Any O and C 6 ring
+                &#34;[#6]1~[#6]~[#6]~[#6]~[#6]~1&#34;,  # any C 5 ring
+                # aromatic n or c 5 member hetrocycle
+                &#34;[c,n]1[c,n][c,n][c,n][c,n]1&#34;,
+                # any O or C 5 member ring system
+                &#34;[#6,#8]1~[#6,#8]~[#6,#8]~[#6,#8]~[#6,#8]~1&#34;,
+                &#34;C1CCCCC1&#34;,  # cyclohexane
+                # amine bound to ring
+                &#34;[NX3;H2,H1][#6]1~[#6]~[#6]~[#6]~[#6]~[#6]~1&#34;,
+                &#34;[NH2]c1ccccc1&#34;,  # 1&#39; amine bound to benzene
+                &#34;c1ccccc1[CH2][NH2]&#34;,  # benzyl NH2
+                &#34;C1N([#1])CCCC1&#34;,  # H connected to N in an unsaturated ring
+                &#34;c1ncccc1&#34;,  # Pyridine
+                &#34;c1n([H])ccc1&#34;,  # pyrrole
+                # see description
+                &#34;[$([#6]([OH])[#6][#7H2]);!$([#6]([OH])(=O)[#6][#7H2])]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#7H]([#6]));!$([#6]([OH])(=O)[#6][#7H]([#6]))]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#7]([#6])([#6]));!$([#6]([OH])(=O)[#6][#7]([#6])([#6]))]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#6][#7H2]);!$([#6]([OH])(=O)[#6][#6][#7H2])]&#34;,
+                # see description
+                &#34;[$([#6]([OH])[#6][#6][#7H]([#6]));!$([#6]([OH])(=O)[#6][#6][#7H]([#6]))]&#34;,
+                &#34;[$([#6]([OH])[#6][#6][#7]([#6])([#6]));!$([#6]([OH])(=O)[#6][#6][#7]([#6])([#6]))]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7H2]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7H]([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])[#7]([CX4])([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[NH2]&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[NH]([CX4])&#34;,
+                # see description
+                &#34;C([#6,#1])([#6,#1])([OH])C([#6,#1])([#6,#1])C([#6,#1])([#6,#1])[N]([CX4])([CX4])&#34;,
+                &#34;[a][C][#7H2]&#34;,  # see description
+                &#34;[a][C][C][#7H2]&#34;,  # see description
+                &#34;[a][C][C][C][#7H2]&#34;,  # see description
+                &#34;[a][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][C][C][#7H]([#6])&#34;,  # see description
+                &#34;[a][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[a][C][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[a][C][C][C][#7]([#6])([#6])&#34;,  # see description
+                &#34;[NH2][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4][CX4]([CH3])&#34;,  # see description
+                # see description
+                &#34;[NH2][CX4][CX4][CX4][CX4][CX4][CX4]([CH3])&#34;,
+                &#34;[CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,  # see description
+                # see description
+                &#34;[CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2][CX4;H2]&#34;,
+                &#34;[$([#7X3;H2][CX4;!$(C=[#7,#8])]),$([#7X3;H1]([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])])].[$([#7X3;H2][CX4;!$(C=[#7,#8])]),&#34;
+                # poly 1&#39; 2&#39; amine
+                &#34;$([#7X3;H1]([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])])]&#34;,
+                &#34;[$([#7X3;H2][CX4;!$(C=[#7,#8])]),$([#7X3;H1]([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])]),$([#7X3]([CX4;!$(C=[#7,#8])])&#34;
+                &#34;([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])])].[$([#7X3;H2][CX4;!$(C=[#7,#8])]),$([#7X3;H1]([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])]),&#34;
+                # poly 1&#39; 2&#39; or 3&#39; amine
+                &#34;$([#7X3]([CX4;!$(C=[#7,#8])])([CX4;!$(C=[#7,#8])])[CX4;!$(C=[#7,#8])])]&#34;,
+                &#34;[#6][O;H1].[#6][O;H1]&#34;,  # poly alcohol
+                # pyrazine aliphatic C2 and C5 substitution
+                &#34;n1c([CX4])cnc([CX4])c1&#34;,
+                # pyridine_aliphatic_C_2_and_5_substitution
+                &#34;n1c([CX4])ccc([CX4])c1&#34;,
+                &#34;n1cccc([CX4])c1&#34;,  # pyridine_aliphatic_C_2_substitution
+            ],
+        }
+
+        try:
+            log.info(&#34;\n&#34;)
+        except Exception:
+            log = logging.getLogger(__name__)
+            log.info(&#34;\n&#34;)
+
+        self.fingerprint_version = fingerprint_version
+
+        if names is None:
+            self.names = self.get_default_names(
+                version=self.fingerprint_version)
+        else:
+            self.names = names
+
+        if substructures is None:
+            self.substructures = self.get_default_substructures(
+                version=self.fingerprint_version,
+            )
+        else:
+            self.substructures = substructures
+
+        if substructures is None and names is None:
+            self.fingerprint_explanation = self.get_default_explanation(
+                version=self.fingerprint_version,
+            )
+            if verbose is True:
+                log.info(
+                    &#34;Finger print is version {}\n{}&#34;.format(
+                        self.fingerprint_version, self.fingerprint_explanation,
+                    ),
+                )
+        else:
+            log.warning(
+                &#34;No fingerprint explanation avaliable as custom substructures have been given, hence you know better than I do what they mean.&#34;,
+            )
+
+        if len(self.names) != len(self.substructures):
+            try:
+                log.warning(
+                    &#34;WARNING - the number of names ({}) and the number of substructures ({}) is different, &#34;
+                    &#34;This will cause issues for defualt functions in this module. Names will be reset to indexes.&#34;.format(
+                        len(self.names), len(self.substructures),
+                    ),
+                )
+                self.names = [str(ith)
+                              for ith in enumerate(self.substructures)]
+                log.warning(
+                    &#34;New names and substructures:\n{}&#34;.format(
+                        &#34;\n&#34;.join(
+                            [
+                                &#34;{} : {}&#34;.format(n, s)
+                                for n, s in zip(self.names, self.substructures)
+                            ],
+                        ),
+                    ),
+                )
+            except NameError:
+                print(
+                    &#34;WARNING - the number of names ({}) and the number of substructures ({}) is different, &#34;
+                    &#34;This will cause issues for defualt functions in this module.&#34;.format(
+                        len(self.names), len(self.substructures),
+                    ),
+                )
+
+        log.info(
+            &#34;Please use the citation below for use of this code:\n{}&#34;.format(
+                citation),
+        )
+
+    def get_default_names(self, version: int = None) -&gt; list:
+        &#34;&#34;&#34;
+        Function to get the names descriptive names of the substructures we are looking for
+        Essentially these substructures look for the amine environment and groups which can interact with it. The first
+        elements identify specific groups. The later elements look for the motifs of closeness of certain functional
+        groups to the amine groups.
+        :param version: int - which version of the fingerprints to get name for
+        &#34;&#34;&#34;
+
+        if version is None:
+            version = self.fingerprint_version
+
+        return self.version_names[version]
+
+    def get_default_substructures(self, version: int = None) -&gt; list:
+        &#34;&#34;&#34;
+        Function get the smarts to search for substructures. Essentially these substructures look for the amine
+        environment and groups which can interact with it. The first elements identify specific groups. The
+        later elements look for the motifs of closeness of certain functional groups to the amine groups.
+        :param version: int - which version of the fingerprints to get substructures for
+        &#34;&#34;&#34;
+
+        if version is None:
+            version = self.fingerprint_version
+
+        return self.version_substructures[version]
+
+    def get_default_explanation(self, version: int = None) -&gt; str:
+        &#34;&#34;&#34;
+        Function to get the description of the version you have picked  names of the substrictires we are looking for
+        Essentially these substructures look for the amine environment and groups which can interact with it. The first
+        elements identify specific groups. The later elements look for the motifs of closeness of certain
+        functional groups to the amine groups.
+        :param version: int - which version of the fingerprints to get explanations for
+        &#34;&#34;&#34;
+
+        if version is None:
+            version = self.fingerprint_version
+
+        return self.version_explanations[version]
+
+    def get_fp_information(self, return_df: bool = False):
+        &#34;&#34;&#34;
+        Print the infomration related to the current fingerprint instantiation
+        &#34;&#34;&#34;
+
+        log = logging.getLogger(__name__)
+
+        log.info(
+            &#34;{:4} | {:59} | {:50}\n---------------------------------------------------------&#34;
+            &#34;-------------------------------------&#34;.format(
+                &#34;bit&#34;, &#34;description&#34;, &#34;smarts&#34;,
+            ),
+        )
+
+        names = []
+        for nam in self.names:
+            nam = &#34; &#34;.join(nam.split(&#34;_&#34;))
+            nam = &#34; &#34;.join(nam.split(&#34;-&#34;))
+            names.append(nam)
+
+        for ith, ds in enumerate(zip(names, self.substructures)):
+            log.info(&#34;{:4} | {:59} | {:50}&#34;.format(ith, ds[0], ds[1]))
+
+        if return_df is True:
+            df_information = pd.DataFrame(
+                np.array([names, self.substructures]).T,
+                columns=[&#34;description&#34;, &#34;smarts&#34;],
+            )
+            return df_information</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="ccsfp.informatics.finger_prints.ccus_fps.get_default_explanation"><code class="name flex">
+<span>def <span class="ident">get_default_explanation</span></span>(<span>self, version: int = None) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to get the description of the version you have picked
+names of the substrictires we are looking for
+Essentially these substructures look for the amine environment and groups which can interact with it. The first
+elements identify specific groups. The later elements look for the motifs of closeness of certain
+functional groups to the amine groups.
+:param version: int - which version of the fingerprints to get explanations for</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_default_explanation(self, version: int = None) -&gt; str:
+    &#34;&#34;&#34;
+    Function to get the description of the version you have picked  names of the substrictires we are looking for
+    Essentially these substructures look for the amine environment and groups which can interact with it. The first
+    elements identify specific groups. The later elements look for the motifs of closeness of certain
+    functional groups to the amine groups.
+    :param version: int - which version of the fingerprints to get explanations for
+    &#34;&#34;&#34;
+
+    if version is None:
+        version = self.fingerprint_version
+
+    return self.version_explanations[version]</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.ccus_fps.get_default_names"><code class="name flex">
+<span>def <span class="ident">get_default_names</span></span>(<span>self, version: int = None) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to get the names descriptive names of the substructures we are looking for
+Essentially these substructures look for the amine environment and groups which can interact with it. The first
+elements identify specific groups. The later elements look for the motifs of closeness of certain functional
+groups to the amine groups.
+:param version: int - which version of the fingerprints to get name for</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_default_names(self, version: int = None) -&gt; list:
+    &#34;&#34;&#34;
+    Function to get the names descriptive names of the substructures we are looking for
+    Essentially these substructures look for the amine environment and groups which can interact with it. The first
+    elements identify specific groups. The later elements look for the motifs of closeness of certain functional
+    groups to the amine groups.
+    :param version: int - which version of the fingerprints to get name for
+    &#34;&#34;&#34;
+
+    if version is None:
+        version = self.fingerprint_version
+
+    return self.version_names[version]</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.ccus_fps.get_default_substructures"><code class="name flex">
+<span>def <span class="ident">get_default_substructures</span></span>(<span>self, version: int = None) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function get the smarts to search for substructures. Essentially these substructures look for the amine
+environment and groups which can interact with it. The first elements identify specific groups. The
+later elements look for the motifs of closeness of certain functional groups to the amine groups.
+:param version: int - which version of the fingerprints to get substructures for</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_default_substructures(self, version: int = None) -&gt; list:
+    &#34;&#34;&#34;
+    Function get the smarts to search for substructures. Essentially these substructures look for the amine
+    environment and groups which can interact with it. The first elements identify specific groups. The
+    later elements look for the motifs of closeness of certain functional groups to the amine groups.
+    :param version: int - which version of the fingerprints to get substructures for
+    &#34;&#34;&#34;
+
+    if version is None:
+        version = self.fingerprint_version
+
+    return self.version_substructures[version]</code></pre>
+</details>
+</dd>
+<dt id="ccsfp.informatics.finger_prints.ccus_fps.get_fp_information"><code class="name flex">
+<span>def <span class="ident">get_fp_information</span></span>(<span>self, return_df: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print the infomration related to the current fingerprint instantiation</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_fp_information(self, return_df: bool = False):
+    &#34;&#34;&#34;
+    Print the infomration related to the current fingerprint instantiation
+    &#34;&#34;&#34;
+
+    log = logging.getLogger(__name__)
+
+    log.info(
+        &#34;{:4} | {:59} | {:50}\n---------------------------------------------------------&#34;
+        &#34;-------------------------------------&#34;.format(
+            &#34;bit&#34;, &#34;description&#34;, &#34;smarts&#34;,
+        ),
+    )
+
+    names = []
+    for nam in self.names:
+        nam = &#34; &#34;.join(nam.split(&#34;_&#34;))
+        nam = &#34; &#34;.join(nam.split(&#34;-&#34;))
+        names.append(nam)
+
+    for ith, ds in enumerate(zip(names, self.substructures)):
+        log.info(&#34;{:4} | {:59} | {:50}&#34;.format(ith, ds[0], ds[1]))
+
+    if return_df is True:
+        df_information = pd.DataFrame(
+            np.array([names, self.substructures]).T,
+            columns=[&#34;description&#34;, &#34;smarts&#34;],
+        )
+        return df_information</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="ccsfp.informatics" href="index.html">ccsfp.informatics</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="ccsfp.informatics.finger_prints.bits_to_text" href="#ccsfp.informatics.finger_prints.bits_to_text">bits_to_text</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.bulk_similarity" href="#ccsfp.informatics.finger_prints.bulk_similarity">bulk_similarity</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.ccs_fp" href="#ccsfp.informatics.finger_prints.ccs_fp">ccs_fp</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.ccus_fp_bitstr" href="#ccsfp.informatics.finger_prints.ccus_fp_bitstr">ccus_fp_bitstr</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.contains_substructures" href="#ccsfp.informatics.finger_prints.contains_substructures">contains_substructures</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.dask_substructure_checker" href="#ccsfp.informatics.finger_prints.dask_substructure_checker">dask_substructure_checker</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.dice_similarity" href="#ccsfp.informatics.finger_prints.dice_similarity">dice_similarity</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.diverse_set_picking" href="#ccsfp.informatics.finger_prints.diverse_set_picking">diverse_set_picking</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.fingerprint_similarity" href="#ccsfp.informatics.finger_prints.fingerprint_similarity">fingerprint_similarity</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.maccskeys_fingerprints" href="#ccsfp.informatics.finger_prints.maccskeys_fingerprints">maccskeys_fingerprints</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.substructure_checker" href="#ccsfp.informatics.finger_prints.substructure_checker">substructure_checker</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="ccsfp.informatics.finger_prints.ccus_fps" href="#ccsfp.informatics.finger_prints.ccus_fps">ccus_fps</a></code></h4>
+<ul class="">
+<li><code><a title="ccsfp.informatics.finger_prints.ccus_fps.get_default_explanation" href="#ccsfp.informatics.finger_prints.ccus_fps.get_default_explanation">get_default_explanation</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.ccus_fps.get_default_names" href="#ccsfp.informatics.finger_prints.ccus_fps.get_default_names">get_default_names</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.ccus_fps.get_default_substructures" href="#ccsfp.informatics.finger_prints.ccus_fps.get_default_substructures">get_default_substructures</a></code></li>
+<li><code><a title="ccsfp.informatics.finger_prints.ccus_fps.get_fp_information" href="#ccsfp.informatics.finger_prints.ccus_fps.get_fp_information">get_fp_information</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

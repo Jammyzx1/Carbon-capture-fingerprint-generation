@@ -1,24 +1,34 @@
 #!/usr/bin/env python
 # Copyright IBM Corporation 2022.
 # SPDX-License-Identifier: MIT
-
 # https://www.rdkit.org/docs/GettingStartedInPython.html
 # creative commons sa 4.0 tutorial used to learn rdkit methods
 # https://creativecommons.org/licenses/by-sa/4.0/
 # (C) 2007-2021 by Greg Landrum
+# RDKit
+from __future__ import annotations
 
-#RDKit
+import logging
+
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Chem import rdCIPLabeler
 
 # Logging
-import logging
 
-def smiles_to_molecule(s: str, addH: bool = True, canonicalize: bool = True, threed: bool = True,
-                      add_stereo: bool = False, remove_stereo: bool = False, random_seed: int= 10459,
-                      verbose: bool = False, test : bool = False) -> rdkit.Chem.rdchem.Mol:
+
+def smiles_to_molecule(
+    s: str,
+    addH: bool = True,
+    canonicalize: bool = True,
+    threed: bool = True,
+    add_stereo: bool = False,
+    remove_stereo: bool = False,
+    random_seed: int = 10459,
+    verbose: bool = False,
+    test: bool = False,
+) -> rdkit.Chem.rdchem.Mol:
     """
     A function to build a RDKit molecule from a smiles string
     :param s: str - smiles string
@@ -39,18 +49,27 @@ def smiles_to_molecule(s: str, addH: bool = True, canonicalize: bool = True, thr
     mol = get_mol_from_smiles(s, canonicalize=canonicalize)
     Chem.rdmolops.Cleanup(mol)
     Chem.rdmolops.SanitizeMol(mol)
-    
+
     if remove_stereo is True:
-        non_isosmiles = Chem.rdmolfiles.MolToSmiles(mol, isomericSmiles=False, allHsExplicit=False)
+        non_isosmiles = Chem.rdmolfiles.MolToSmiles(
+            mol, isomericSmiles=False, allHsExplicit=False,
+        )
         mol = get_mol_from_smiles(non_isosmiles, canonicalize=canonicalize)
         Chem.rdmolops.Cleanup(mol)
         Chem.rdmolops.SanitizeMol(mol)
-        
+
         if verbose is True:
             for atom in mol.GetAtoms():
-                log.info("Atom {} {} in molecule from smiles {} tag will be cleared. "
-                        "Set properties {}.".format(atom.GetIdx(), atom.GetSymbol(), s,
-                                                    atom.GetPropsAsDict(includePrivate=True, includeComputed=True)))
+                log.info(
+                    "Atom {} {} in molecule from smiles {} tag will be cleared. "
+                    "Set properties {}.".format(
+                        atom.GetIdx(),
+                        atom.GetSymbol(),
+                        s,
+                        atom.GetPropsAsDict(
+                            includePrivate=True, includeComputed=True),
+                    ),
+                )
 
     if addH is True:
         mol = Chem.rdmolops.AddHs(mol)
@@ -58,17 +77,19 @@ def smiles_to_molecule(s: str, addH: bool = True, canonicalize: bool = True, thr
     if add_stereo is True:
         rdCIPLabeler.AssignCIPLabels(mol)
 
-
     if threed:
         AllChem.EmbedMolecule(mol, randomSeed=random_seed)
 
     if test is True:
         return mol.GetNumAtoms()
 
-    return mol 
-    
-def get_mol_from_smiles(smiles: str, canonicalize: bool = True, test : bool = False) -> rdkit.Chem.rdchem.Mol:
-    """ 
+    return mol
+
+
+def get_mol_from_smiles(
+    smiles: str, canonicalize: bool = True, test: bool = False,
+) -> rdkit.Chem.rdchem.Mol:
+    """
     Function to make a mol object based on smiles
     :param smiles: str - SMILES string
     :param canonicalize: True/False - use RDKit canonicalized smile or the input resprectively
@@ -84,8 +105,12 @@ def get_mol_from_smiles(smiles: str, canonicalize: bool = True, test : bool = Fa
     else:
         s = smiles
     mol = Chem.MolFromSmiles(s)
-    log.debug("Input smiles: {} RDKit Canonicalized smiles {} (Note RDKit does not use "
-              "general canon smiles rules https://github.com/rdkit/rdkit/issues/2747)".format(smiles, s)) 
+    log.debug(
+        "Input smiles: {} RDKit Canonicalized smiles {} (Note RDKit does not use "
+        "general canon smiles rules https://github.com/rdkit/rdkit/issues/2747)".format(
+            smiles, s,
+        ),
+    )
     Chem.rdmolops.SanitizeMol(mol)
     Chem.rdmolops.Cleanup(mol)
 
@@ -95,9 +120,17 @@ def get_mol_from_smiles(smiles: str, canonicalize: bool = True, test : bool = Fa
     return mol
 
 
-def inchi_to_molecule(inchi: str, addH: bool = True, canonicalize: bool = True, threed: bool = True,
-                       add_stereo: bool = False, remove_stereo: bool = False, random_seed: int = 10459,
-                       verbose: bool = False, test : bool = False) -> rdkit.Chem.rdchem.Mol:
+def inchi_to_molecule(
+    inchi: str,
+    addH: bool = True,
+    canonicalize: bool = True,
+    threed: bool = True,
+    add_stereo: bool = False,
+    remove_stereo: bool = False,
+    random_seed: int = 10459,
+    verbose: bool = False,
+    test: bool = False,
+) -> rdkit.Chem.rdchem.Mol:
     """
     A function to build a RDKit molecule from an InChI string
     :param inchi: str - InChI string
@@ -120,16 +153,25 @@ def inchi_to_molecule(inchi: str, addH: bool = True, canonicalize: bool = True, 
     Chem.rdmolops.SanitizeMol(mol)
 
     if remove_stereo is True:
-        non_isosmiles = Chem.rdmolfiles.MolToSmiles(mol, isomericSmiles=False, allHsExplicit=False)
+        non_isosmiles = Chem.rdmolfiles.MolToSmiles(
+            mol, isomericSmiles=False, allHsExplicit=False,
+        )
         mol = get_mol_from_smiles(non_isosmiles, canonicalize=canonicalize)
         Chem.rdmolops.Cleanup(mol)
         Chem.rdmolops.SanitizeMol(mol)
 
         if verbose is True:
             for atom in mol.GetAtoms():
-                log.info("Atom {} {} in molecule from InChI {} tag will be cleared. "
-                         "Set properties {}.".format(atom.GetIdx(), atom.GetSymbol(), inchi,
-                                                     atom.GetPropsAsDict(includePrivate=True, includeComputed=True)))
+                log.info(
+                    "Atom {} {} in molecule from InChI {} tag will be cleared. "
+                    "Set properties {}.".format(
+                        atom.GetIdx(),
+                        atom.GetSymbol(),
+                        inchi,
+                        atom.GetPropsAsDict(
+                            includePrivate=True, includeComputed=True),
+                    ),
+                )
 
     if addH is True:
         mol = Chem.rdmolops.AddHs(mol)
@@ -146,7 +188,7 @@ def inchi_to_molecule(inchi: str, addH: bool = True, canonicalize: bool = True, 
     return mol
 
 
-def get_mol_from_inchi(inchi: str, test : bool = False) -> rdkit.Chem.rdchem.Mol:
+def get_mol_from_inchi(inchi: str, test: bool = False) -> rdkit.Chem.rdchem.Mol:
     """
     Function to make a mol object based on smiles
     :param inchi: str - SMILES string
@@ -167,6 +209,8 @@ def get_mol_from_inchi(inchi: str, test : bool = False) -> rdkit.Chem.rdchem.Mol
 
     return mol
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

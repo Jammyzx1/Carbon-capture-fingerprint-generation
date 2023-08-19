@@ -1,27 +1,29 @@
 # Copyright IBM Corporation 2022.
 # SPDX-License-Identifier: EPL-2.0
+from __future__ import annotations
+
+import os
 
 import setuptools
 from setuptools import setup
-import os
 
 with open("README.md", "r") as readme_file:
     long_description = readme_file.read()
 
-install_requires=[
-        "pandas",
-        "scikit-learn",
-        "matplotlib",
-        "scipy",
-        "rdkit-pypi",
-        "dask[distributed]",
-        "IPython",
-        "networkx",
-        "numpy==1.21",
-        "pillow",
-        "networkx",
-        "pubchempy"
-    ]
+install_requires = [
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "scipy",
+    "rdkit-pypi==2022.03.2",
+    "dask[distributed]==2022.02.0",
+    "IPython",
+    "networkx",
+    "numpy==1.21",
+    "pillow",
+    "networkx",
+    "pubchempy",
+]
 
 setuptools.setup(
     name="ccsfp",
@@ -33,8 +35,6 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
     license="All rights reserved, Copyright IBM Corporation 2023. SPDX-License-Identifier: MIT",
-    classifiers=[
-        "Programming Language :: Python :: 3"
-    ],
-    install_requires=install_requires
+    classifiers=["Programming Language :: Python :: 3"],
+    install_requires=install_requires,
 )
