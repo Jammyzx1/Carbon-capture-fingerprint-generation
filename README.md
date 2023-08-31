@@ -14,6 +14,15 @@ of carbon capture molecular properties. The current capabilities are:
 1. Molecular dataset analysis
 1. Duplication of molecular string data identification
 
+Please cite if you use the code:
+```
+@article{mcdonagh2022chemical,
+  title={Chemical space analysis and property prediction for carbon capture amine molecules},
+  author={McDonagh, James and Zavitsanou, Stamatia and Harrison, Alexander and Zubarev, Dimitry and Wunsch, Benjamin and van Kessel, Theordore and Cipcigan, Flaviu},
+  year={2022},
+  url={https://chemrxiv.org/engage/chemrxiv/article-details/62e110cbadb01e653cae19f4}
+```
+
 # Contributing
 Please make contributions to the `dev` branch and open PRs to merge in to `master` branch.
 We use docstring and unit tests to help maintain the library these are called through the `unit_test.py` script.
