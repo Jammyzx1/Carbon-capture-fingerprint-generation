@@ -1,9 +1,7 @@
 # Copyright IBM Corporation 2022.
 # SPDX-License-Identifier: EPL-2.0
 from __future__ import annotations
-
 import os
-
 import setuptools
 from setuptools import setup
 
