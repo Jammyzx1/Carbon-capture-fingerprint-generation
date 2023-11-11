@@ -12,7 +12,7 @@ with open("README.md", "r") as readme_file:
 
 install_requires = [
     "pandas",
-    "scikit-learn",
+    "scikit-learn==1.0.2",
     "matplotlib",
     "scipy",
     "rdkit-pypi==2022.03.2",
@@ -23,6 +23,7 @@ install_requires = [
     "pillow",
     "networkx",
     "pubchempy",
+    "imbalanced-learn==0.9.0",
 ]
 
 setuptools.setup(
