@@ -2,8 +2,9 @@
 # SPDX-License-Identifier: MIT
 from ccsfp import informatics
 from ccsfp import utilities
+import pkg_resources  # part of setuptools
+__version__ = pkg_resources.require("ccsfp")[0].version
 
-__version__ = "0.0.1"
 __license__ = """
 MIT License
 
