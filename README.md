@@ -16,11 +16,18 @@ of carbon capture molecular properties. The current capabilities are:
 
 Please cite if you use the code:
 ```
-@article{mcdonagh2022chemical,
-  title={Chemical space analysis and property prediction for carbon capture amine molecules},
-  author={McDonagh, James and Zavitsanou, Stamatia and Harrison, Alexander and Zubarev, Dimitry and Wunsch, Benjamin and van Kessel, Theordore and Cipcigan, Flaviu},
-  year={2022},
-  url={https://chemrxiv.org/engage/chemrxiv/article-details/62e110cbadb01e653cae19f4}
+@article{mcdonagh2024chemical,
+  title={Chemical space analysis and property prediction for carbon capture solvent molecules},
+  author={McDonagh, James L and Zavitsanou, Stamatia and Harrison, Alexander and Zubarev, Dimitry and van Kessel, Theordore and Wunsch, Benjamin H and Cipcigan, Flaviu},
+  journal={Digital Discovery},
+  volume={3},
+  number={3},
+  pages={528--543},
+  year={2024},
+  publisher={Royal Society of Chemistry}
+  url={https://pubs.rsc.org/en/content/articlehtml/2024/dd/d3dd00073g}
+}
+  
 ```
 
 # Contributing
